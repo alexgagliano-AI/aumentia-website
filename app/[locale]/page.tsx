@@ -1,5 +1,6 @@
 import { getTranslations } from "@/lib/i18n";
 import Link from "next/link";
+import Image from "next/image";
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -251,13 +252,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
             <div style={{ marginBottom: 24 }}><span className="badge">👤 {t.about.badge}</span></div>
 
-            {/* Avatar placeholder */}
-            <div style={{
-              width: 80, height: 80, borderRadius: "50%",
-              background: "var(--cyan-dim)", border: "2px solid var(--cyan)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 32, margin: "0 auto 24px",
-            }}>AG</div>
+            <div style={{ margin: "0 auto 24px", width: 80, height: 80 }}>
+              <Image src="/logo.png" alt="Aumentia" width={80} height={80} style={{ objectFit: "contain" }} />
+            </div>
 
             <h2 style={{ fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 800, marginBottom: 8, letterSpacing: "-0.02em" }}>
               {t.about.name}

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { locales, localeLabels, type Locale } from "@/lib/i18n";
 
@@ -54,15 +55,7 @@ export default function Nav({ locale, t }: NavProps) {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 72 }}>
           {/* Logo */}
           <Link href={`/${locale}`} style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-            <div style={{
-              width: 36, height: 36, borderRadius: 8,
-              background: "var(--cyan-dim)", border: "1px solid var(--cyan)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontWeight: 900, fontSize: 18, color: "var(--cyan)",
-            }}>A</div>
-            <span style={{ fontWeight: 800, fontSize: 18, color: "#fff", letterSpacing: "-0.02em" }}>
-              Aumentia
-            </span>
+            <Image src="/logo.png" alt="Aumentia" width={44} height={44} style={{ objectFit: "contain" }} priority />
           </Link>
 
           {/* Desktop links */}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 interface FooterProps {
   locale: string;
@@ -17,13 +18,7 @@ export default function Footer({ locale, t }: FooterProps) {
           {/* Brand */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-              <div style={{
-                width: 36, height: 36, borderRadius: 8,
-                background: "var(--cyan-dim)", border: "1px solid var(--cyan)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontWeight: 900, fontSize: 18, color: "var(--cyan)",
-              }}>A</div>
-              <span style={{ fontWeight: 800, fontSize: 18, color: "#fff" }}>Aumentia</span>
+              <Image src="/logo.png" alt="Aumentia" width={52} height={52} style={{ objectFit: "contain" }} />
             </div>
             <p style={{ color: "var(--gold)", fontSize: 13, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 12 }}>
               {t.tagline}
