@@ -1,0 +1,243 @@
+import type { Translations } from "./types";
+
+const en: Translations = {
+  nav: {
+    home: "Home",
+    audit: "AI Audit",
+    coaching: "AI Coaching",
+    contact: "Contact",
+    cta: "Book a Demo",
+  },
+  hero: {
+    badge: "The Augmented Enterprise",
+    title1: "Reveal the power",
+    title2: "of AI for your",
+    title3: "business.",
+    subtitle: "Because waiting is no longer an option. Your teams, clients and market are evolving too fast.",
+    cta1: "Book a Demo",
+    cta2: "Discover our offers",
+    stat1: { value: "+20%", label: "efficiency in 90 days" },
+    stat2: { value: "+15h", label: "freed per week" },
+    stat3: { value: "-25%", label: "operational costs" },
+  },
+  problem: {
+    badge: "The reality",
+    title: "90% of SMBs want to scale. Few succeed without AI.",
+    items: [
+      "Too much complexity, not enough clarity",
+      "Too many repetitive tasks draining your teams",
+      "Too much dependency on humans for everything",
+      "Zero time to think strategically",
+      "Unexploited data sitting unused",
+      "A competitive gap that costs you every month",
+    ],
+    conclusion: "AI is misunderstood, misused or completely absent. And this gap costs you.",
+  },
+  pillars: {
+    badge: "Our two pillars",
+    title: "AI Audit + AI Coaching.",
+    subtitle: "Two complementary approaches to transform your business with AI.",
+    audit: {
+      title: "AI Audit & Implementation",
+      desc: "Your complete AI roadmap: opportunities, ROI, quick wins, automations, architecture. We don't promise — we deliver.",
+      cta: "See the Audit offer",
+    },
+    coaching: {
+      title: "AI Coaching",
+      desc: "AI coaches available 24/7 to accelerate your growth, performance and execution.",
+      cta: "Discover the coaches",
+    },
+  },
+  results: {
+    badge: "Results",
+    title: "What we deliver in 90 days.",
+    items: [
+      { value: "+20%", label: "overall efficiency" },
+      { value: "+15h", label: "freed per week for leadership" },
+      { value: "-25%", label: "operational costs" },
+      { value: "+30%", label: "speed on commercial pipeline" },
+      { value: "0", label: "repetitive unautomated tasks" },
+      { value: "∞", label: "real-time dashboards" },
+    ],
+    promise: "Increased efficiency. Without complexity, without jargon, without painful transformation.",
+  },
+  values: {
+    badge: "Our values",
+    title: "NOW.",
+    subtitle: "Not Only Widgets. Now Or Never. The time to act is now.",
+    items: [
+      {
+        letter: "B",
+        title: "Business First, Tech After",
+        desc: "We start with your ROI, not the technology. AI is a tool, not an end goal.",
+      },
+      {
+        letter: "S",
+        title: "Security",
+        desc: "We secure what we deliver. Zero promises without guarantees. What we don't master, we don't sell.",
+      },
+      {
+        letter: "P",
+        title: "Positivity Mindset",
+        desc: "We move forward with energy, even in complexity. Every problem is an opportunity.",
+      },
+      {
+        letter: "W",
+        title: "We Use What We Sell",
+        desc: "We live our product. We are our best client. Aumentia runs on AI.",
+      },
+    ],
+  },
+  about: {
+    badge: "The founder",
+    name: "Alexandre Gagliano",
+    role: "CEO & Founder, Aumentia",
+    bhag: "BHAG: Help 1 million people through AI by 2040.",
+    purpose: "Aumentia exists to close the gap between AI and real ROI. We help people use AI with real results — not just impressive demos.",
+    cta: "Book a call with Alexandre",
+  },
+  footer: {
+    tagline: "The augmented enterprise.",
+    links: {
+      title1: "Solutions",
+      audit: "AI Audit",
+      coaching: "AI Coaching",
+      title2: "Contact",
+    },
+    rights: "All rights reserved.",
+  },
+
+  auditPage: {
+    badge: "Audit Offer",
+    title: "Your AI roadmap,",
+    title2: "delivered in 3 steps.",
+    subtitle: "No jargon, no empty promises. We analyze, implement and run.",
+    steps: [
+      {
+        num: "01",
+        title: "AI Audit",
+        duration: "2–3 weeks",
+        desc: "We dive deep into your processes, tools and data. We identify high-ROI AI opportunities, quick wins and risks. You leave with a complete, prioritized roadmap.",
+        deliverables: [
+          "Mapping of your current processes",
+          "AI opportunity identification (prioritized ROI)",
+          "Immediately actionable quick wins",
+          "Recommended AI architecture",
+          "Detailed 90-day roadmap",
+        ],
+      },
+      {
+        num: "02",
+        title: "Implementation",
+        duration: "8–10 weeks",
+        desc: "We take action. Automations, integrations, dashboards, AI agents — we build what was defined in the audit. Your teams are trained, your processes transformed.",
+        deliverables: [
+          "Automation of repetitive tasks",
+          "AI integrations into existing tools",
+          "Real-time dashboards and reporting",
+          "Team training",
+          "Complete documentation",
+        ],
+      },
+      {
+        num: "03",
+        title: "Run & Optimize",
+        duration: "Ongoing",
+        desc: "AI isn't installed, it's maintained. We monitor, optimize and evolve your AI systems continuously to keep them performing and aligned with your business.",
+        deliverables: [
+          "Continuous performance monitoring",
+          "Monthly system optimization",
+          "Updates and new integrations",
+          "Priority support",
+          "Monthly ROI reporting",
+        ],
+      },
+    ],
+    cta: {
+      title: "Ready to take action?",
+      subtitle: "Book a free 30-minute discovery call.",
+      btn: "Book a free demo",
+    },
+  },
+
+  coachingPage: {
+    badge: "AI Coaching",
+    title: "Your AI coaches,",
+    title2: "available 24/7.",
+    subtitle: "Artificial intelligences trained on the world's best methodologies. Accessible via Telegram, whenever you need them.",
+    coaches: [
+      {
+        id: "scaling-up",
+        name: "Scaling Up Coach",
+        tagline: "Business growth",
+        desc: "Based on Verne Harnish's Scaling Up method. Strategy, OKRs, quarterly Rocks, efficient meetings — this coach knows the playbook of companies that scale.",
+        status: "active",
+        cta: "Start on Telegram",
+        link: "https://t.me/ScalingUpCoachBot",
+        tags: ["Strategy", "OKRs", "Scaling Up", "Leadership"],
+      },
+      {
+        id: "personal",
+        name: "Personal Coach",
+        tagline: "Personal & professional development",
+        desc: "Mindset, time management, high performance habits, clarity on your life goals. A coach that knows you and adapts to your pace.",
+        status: "soon",
+        cta: "Coming soon",
+        link: null,
+        tags: ["Mindset", "Habits", "Performance", "Clarity"],
+      },
+      {
+        id: "sport",
+        name: "Sports & Nutrition Coach",
+        tagline: "Body and energy at maximum",
+        desc: "Personalized training plans, optimized nutrition, smart recovery. Because a high-performing leader needs a body that keeps up.",
+        status: "soon",
+        cta: "Coming soon",
+        link: null,
+        tags: ["Sport", "Nutrition", "Energy", "Recovery"],
+      },
+      {
+        id: "execution",
+        name: "Execution Coach",
+        tagline: "Execute like Dan Martell",
+        desc: "Inspired by Buy Back Your Time. Delegation, systems, hiring, CEO productivity. This coach helps you work on your business, not in it.",
+        status: "soon",
+        cta: "Coming soon",
+        link: null,
+        tags: ["Delegation", "Systems", "CEO", "Buy Back"],
+      },
+    ],
+    why: {
+      title: "Why AI coaches?",
+      items: [
+        { icon: "🕐", title: "Available 24/7", desc: "Ask questions at 11pm before an important meeting. Your coach is there." },
+        { icon: "🧠", title: "Trained on the best", desc: "Each coach deeply masters its methodology. No approximations." },
+        { icon: "💰", title: "10x more affordable", desc: "An expert human coach costs thousands per month. Our AI, a fraction." },
+        { icon: "📱", title: "Via Telegram", desc: "No app to install. Your coach lives in your phone, where you are." },
+      ],
+    },
+  },
+
+  contactPage: {
+    badge: "Contact",
+    title: "Let's talk about your",
+    title2: "AI project.",
+    subtitle: "30 minutes is enough to identify your priority opportunities.",
+    form: {
+      name: "Your first name",
+      email: "Your professional email",
+      company: "Your company",
+      message: "Describe your situation (optional)",
+      submit: "Send message",
+      sending: "Sending...",
+      success: "Message sent! We'll get back to you within 24h.",
+    },
+    info: {
+      demo: { title: "Book a demo", desc: "30 min to identify your AI opportunities. Free." },
+      email: { title: "Direct email", value: "alex@aumentia.ai" },
+      phone: { title: "Phone", value: "+32 471 662 563" },
+    },
+  },
+};
+
+export default en;

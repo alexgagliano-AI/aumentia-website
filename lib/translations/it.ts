@@ -1,0 +1,243 @@
+import type { Translations } from "./types";
+
+const it: Translations = {
+  nav: {
+    home: "Home",
+    audit: "Audit IA",
+    coaching: "Coaching IA",
+    contact: "Contatto",
+    cta: "Prenota una demo",
+  },
+  hero: {
+    badge: "L'impresa aumentata",
+    title1: "Rivela la potenza",
+    title2: "dell'IA per la tua",
+    title3: "azienda.",
+    subtitle: "Perché aspettare non è più un'opzione. I tuoi team, clienti e mercato evolvono troppo velocemente.",
+    cta1: "Prenota una demo",
+    cta2: "Scopri le nostre offerte",
+    stat1: { value: "+20%", label: "di efficienza in 90 giorni" },
+    stat2: { value: "+15h", label: "liberate per settimana" },
+    stat3: { value: "-25%", label: "di costi operativi" },
+  },
+  problem: {
+    badge: "La realtà",
+    title: "Il 90% delle PMI vuole scalare. Poche ci riescono senza l'IA.",
+    items: [
+      "Troppa complessità, poca chiarezza",
+      "Troppi compiti ripetitivi che esauriscono i tuoi team",
+      "Troppa dipendenza dall'umano per tutto",
+      "Zero tempo per pensare strategicamente",
+      "Dati non sfruttati che dormono inutilizzati",
+      "Un ritardo competitivo che ti costa ogni mese",
+    ],
+    conclusion: "L'IA è mal compresa, mal usata o completamente assente. E questo gap ti costa.",
+  },
+  pillars: {
+    badge: "I nostri due pilastri",
+    title: "Audit IA + Coaching IA.",
+    subtitle: "Due approcci complementari per trasformare la tua azienda con l'IA.",
+    audit: {
+      title: "Audit & Implementazione IA",
+      desc: "La tua roadmap IA completa: opportunità, ROI, quick wins, automazioni, architettura. Non promettiamo — consegniamo.",
+      cta: "Vedi l'offerta Audit",
+    },
+    coaching: {
+      title: "Coaching IA",
+      desc: "Coach IA disponibili 24/7 per accelerare la tua crescita, performance ed esecuzione.",
+      cta: "Scopri i coach",
+    },
+  },
+  results: {
+    badge: "Risultati",
+    title: "Cosa consegniamo in 90 giorni.",
+    items: [
+      { value: "+20%", label: "di efficienza globale" },
+      { value: "+15h", label: "liberate/settimana per il leader" },
+      { value: "-25%", label: "di costi operativi" },
+      { value: "+30%", label: "di velocità sul pipeline commerciale" },
+      { value: "0", label: "compiti ripetitivi non automatizzati" },
+      { value: "∞", label: "dashboard in tempo reale" },
+    ],
+    promise: "Efficienza aumentata. Senza complessità, senza gergo, senza trasformazione dolorosa.",
+  },
+  values: {
+    badge: "I nostri valori",
+    title: "NOW.",
+    subtitle: "Not Only Widgets. Now Or Never. Il momento di agire è adesso.",
+    items: [
+      {
+        letter: "B",
+        title: "Business First, Tech After",
+        desc: "Partiamo dal tuo ROI, non dalla tecnologia. L'IA è uno strumento, non un fine.",
+      },
+      {
+        letter: "S",
+        title: "Security",
+        desc: "Proteggiamo ciò che consegniamo. Zero promesse senza garanzie. Quello che non padroneggiamo, non lo vendiamo.",
+      },
+      {
+        letter: "P",
+        title: "Positivity Mindset",
+        desc: "Andiamo avanti con energia, anche nella complessità. Ogni problema è un'opportunità.",
+      },
+      {
+        letter: "W",
+        title: "We Use What We Sell",
+        desc: "Viviamo il nostro prodotto. Siamo il nostro miglior cliente. Aumentia gira sull'IA.",
+      },
+    ],
+  },
+  about: {
+    badge: "Il fondatore",
+    name: "Alexandre Gagliano",
+    role: "CEO & Fondatore, Aumentia",
+    bhag: "BHAG: Aiutare 1 milione di persone grazie all'IA entro il 2040.",
+    purpose: "Aumentia esiste per colmare il divario tra l'IA e il ROI reale. Aiutiamo le persone a usare l'IA con risultati concreti — non solo demo impressionanti.",
+    cta: "Prenota una chiamata con Alexandre",
+  },
+  footer: {
+    tagline: "L'impresa aumentata.",
+    links: {
+      title1: "Soluzioni",
+      audit: "Audit IA",
+      coaching: "Coaching IA",
+      title2: "Contatto",
+    },
+    rights: "Tutti i diritti riservati.",
+  },
+
+  auditPage: {
+    badge: "Offerta Audit",
+    title: "La tua roadmap IA,",
+    title2: "consegnata in 3 fasi.",
+    subtitle: "Nessun gergo, nessuna promessa vuota. Analizziamo, implementiamo e facciamo girare.",
+    steps: [
+      {
+        num: "01",
+        title: "Audit IA",
+        duration: "2–3 settimane",
+        desc: "Entriamo nei tuoi processi, strumenti e dati. Identifichiamo le opportunità IA ad alto ROI, i quick wins e i rischi. Esci con una roadmap completa e priorizzata.",
+        deliverables: [
+          "Mappatura dei tuoi processi attuali",
+          "Identificazione opportunità IA (ROI priorizzato)",
+          "Quick wins immediatamente azionabili",
+          "Architettura IA raccomandata",
+          "Roadmap 90 giorni dettagliata",
+        ],
+      },
+      {
+        num: "02",
+        title: "Implementazione",
+        duration: "8–10 settimane",
+        desc: "Passiamo all'azione. Automazioni, integrazioni, dashboard, agenti IA — costruiamo ciò che è stato definito nell'audit. I tuoi team vengono formati, i processi trasformati.",
+        deliverables: [
+          "Automazione dei compiti ripetitivi",
+          "Integrazioni IA negli strumenti esistenti",
+          "Dashboard e reporting in tempo reale",
+          "Formazione del team",
+          "Documentazione completa",
+        ],
+      },
+      {
+        num: "03",
+        title: "Run & Optimize",
+        duration: "Continuativo",
+        desc: "L'IA non si installa, si mantiene. Monitoriamo, ottimizziamo e facciamo evolvere i tuoi sistemi IA in modo continuo per mantenerli performanti e allineati al tuo business.",
+        deliverables: [
+          "Monitoraggio continuo delle performance",
+          "Ottimizzazione mensile dei sistemi",
+          "Aggiornamenti e nuove integrazioni",
+          "Supporto prioritario",
+          "Report ROI mensile",
+        ],
+      },
+    ],
+    cta: {
+      title: "Pronto ad agire?",
+      subtitle: "Prenota una chiamata di scoperta gratuita di 30 minuti.",
+      btn: "Prenota una demo gratuita",
+    },
+  },
+
+  coachingPage: {
+    badge: "Coaching IA",
+    title: "I tuoi coach IA,",
+    title2: "disponibili 24/7.",
+    subtitle: "Intelligenze artificiali addestrate sulle migliori metodologie mondiali. Accessibili via Telegram, quando ne hai bisogno.",
+    coaches: [
+      {
+        id: "scaling-up",
+        name: "Coach Scaling Up",
+        tagline: "Crescita aziendale",
+        desc: "Basato sul metodo Scaling Up di Verne Harnish. Strategia, OKR, Rocks trimestrali, riunioni efficaci — questo coach conosce il playbook delle aziende che scalano.",
+        status: "active",
+        cta: "Inizia su Telegram",
+        link: "https://t.me/ScalingUpCoachBot",
+        tags: ["Strategia", "OKR", "Scaling Up", "Leadership"],
+      },
+      {
+        id: "personal",
+        name: "Coach Personale",
+        tagline: "Sviluppo personale e professionale",
+        desc: "Mindset, gestione del tempo, abitudini ad alta performance, chiarezza sui tuoi obiettivi di vita. Un coach che ti conosce e si adatta al tuo ritmo.",
+        status: "soon",
+        cta: "Prossimamente",
+        link: null,
+        tags: ["Mindset", "Abitudini", "Performance", "Chiarezza"],
+      },
+      {
+        id: "sport",
+        name: "Coach Sportivo & Nutrizione",
+        tagline: "Corpo ed energia al massimo",
+        desc: "Piani di allenamento personalizzati, nutrizione ottimizzata, recupero intelligente. Perché un leader ad alte prestazioni ha bisogno di un corpo che regge.",
+        status: "soon",
+        cta: "Prossimamente",
+        link: null,
+        tags: ["Sport", "Nutrizione", "Energia", "Recupero"],
+      },
+      {
+        id: "execution",
+        name: "Coach Esecuzione",
+        tagline: "Esegui come Dan Martell",
+        desc: "Ispirato a Buy Back Your Time. Delega, sistemi, assunzione, produttività CEO. Questo coach ti aiuta a lavorare sulla tua azienda, non dentro di essa.",
+        status: "soon",
+        cta: "Prossimamente",
+        link: null,
+        tags: ["Delega", "Sistemi", "CEO", "Buy Back"],
+      },
+    ],
+    why: {
+      title: "Perché coach IA?",
+      items: [
+        { icon: "🕐", title: "Disponibile 24/7", desc: "Fai domande alle 23 prima di una riunione importante. Il tuo coach è lì." },
+        { icon: "🧠", title: "Formato sui migliori", desc: "Ogni coach padroneggia profondamente la sua metodologia. Nessuna approssimazione." },
+        { icon: "💰", title: "10x più economico", desc: "Un coach umano esperto costa migliaia al mese. La nostra IA, una frazione." },
+        { icon: "📱", title: "Via Telegram", desc: "Nessuna app da installare. Il tuo coach è nel tuo telefono, dove sei tu." },
+      ],
+    },
+  },
+
+  contactPage: {
+    badge: "Contatto",
+    title: "Parliamo del tuo",
+    title2: "progetto IA.",
+    subtitle: "30 minuti bastano per identificare le tue opportunità prioritarie.",
+    form: {
+      name: "Il tuo nome",
+      email: "La tua email professionale",
+      company: "La tua azienda",
+      message: "Descrivi la tua situazione (opzionale)",
+      submit: "Invia messaggio",
+      sending: "Invio...",
+      success: "Messaggio inviato! Ti rispondiamo entro 24h.",
+    },
+    info: {
+      demo: { title: "Prenota una demo", desc: "30 min per identificare le tue opportunità IA. Gratuito." },
+      email: { title: "Email diretta", value: "alex@aumentia.ai" },
+      phone: { title: "Telefono", value: "+32 471 662 563" },
+    },
+  },
+};
+
+export default it;
