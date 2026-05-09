@@ -72,13 +72,27 @@ export default async function AuditDetail({ params }: { params: Promise<{ id: st
               {company?.country && ` · ${company.country}`}
             </p>
           </div>
-          <AuditActions
-            auditId={id}
-            status={audit.status}
-            respondentCount={respondents.length}
-            completedCount={completed.length}
-            hasReport={!!audit.report_content}
-          />
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "flex-end" }}>
+            {completed.length > 0 && (
+              <Link
+                href={`/admin/audits/${id}/responses`}
+                style={{
+                  padding: "9px 18px", background: "transparent",
+                  border: "1px solid var(--dark-border)", borderRadius: 8,
+                  color: "var(--gray-light)", fontSize: 13, textDecoration: "none",
+                }}
+              >
+                📋 Voir les réponses
+              </Link>
+            )}
+            <AuditActions
+              auditId={id}
+              status={audit.status}
+              respondentCount={respondents.length}
+              completedCount={completed.length}
+              hasReport={!!audit.report_content}
+            />
+          </div>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>

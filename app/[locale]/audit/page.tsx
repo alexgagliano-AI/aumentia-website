@@ -106,6 +106,62 @@ export default async function AuditPage({ params }: { params: Promise<{ locale: 
         </div>
       </section>
 
+      {/* FREE DIAGNOSTIC CTA */}
+      <section className="section-sm">
+        <div className="container">
+          <div style={{
+            display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48,
+            alignItems: "center", padding: "56px 48px",
+            background: "var(--dark-card)", borderRadius: 20,
+            border: "1px solid var(--cyan)",
+            boxShadow: "0 0 40px rgba(0,212,200,0.05)",
+          }}>
+            <div>
+              <div style={{ marginBottom: 16 }}>
+                <span className="badge">🎁 Offre gratuite</span>
+              </div>
+              <h2 style={{ fontSize: "clamp(24px, 3.5vw, 38px)", fontWeight: 900, letterSpacing: "-0.02em", marginBottom: 16, lineHeight: 1.1 }}>
+                Diagnostic IA<br />
+                <span className="gradient-text">100% gratuit</span>
+              </h2>
+              <p style={{ color: "var(--gray-light)", fontSize: 16, lineHeight: 1.7, marginBottom: 0 }}>
+                Avant tout audit complet, réalisez votre Diagnostic IA en ligne.
+                En 30 minutes, vos équipes répondent à un questionnaire stratégique
+                et vous recevez un rapport personnalisé de 20 pages généré par IA.
+              </p>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              {[
+                ["🏢", "Questionnaire multi-répondants", "CEO, CFO, COO, Sales, RH — chacun reçoit son lien unique"],
+                ["🤖", "Rapport IA en 30 secondes", "Claude analyse et génère un rapport stratégique personnalisé"],
+                ["📊", "Scores vs. benchmarks", "Comparez votre maturité IA aux PME de votre région"],
+                ["🎯", "Roadmap 30/90/365 jours", "Plan d'action concret et priorisé par ROI"],
+              ].map(([icon, title, desc]) => (
+                <div key={title} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
+                  <span style={{ fontSize: 20, flexShrink: 0, marginTop: 2 }}>{icon}</span>
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 2 }}>{title}</div>
+                    <div style={{ color: "var(--gray-light)", fontSize: 13 }}>{desc}</div>
+                  </div>
+                </div>
+              ))}
+              <a
+                href={`/${locale}/contact`}
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: 8,
+                  marginTop: 8, padding: "14px 28px",
+                  background: "var(--cyan)", color: "var(--dark)",
+                  borderRadius: 10, fontWeight: 700, fontSize: 15,
+                  textDecoration: "none", transition: "opacity 0.2s",
+                }}
+              >
+                Demander mon diagnostic gratuit →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA SECTION */}
       <section className="section-sm" style={{ background: "var(--dark-card)" }}>
         <div className="container">

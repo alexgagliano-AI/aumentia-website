@@ -86,17 +86,26 @@ export default async function ResultsPage({ params }: { params: Promise<{ token:
           <p style={{ fontSize: 12, fontWeight: 700, color: "var(--gray-light)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 12 }}>
             {isCEO ? "Maturité IA globale de l'entreprise" : `Score IA — ${ROLE_LABELS[respondent.role as Role]}`}
           </p>
-          <div style={{ fontSize: 56, fontWeight: 900, color: maturity.color, letterSpacing: "-0.03em", marginBottom: 4 }}>
-            {isCEO ? auditScores.overall : myScores.overall}
-            <span style={{ fontSize: 24, fontWeight: 400, color: "var(--gray)" }}>/100</span>
-          </div>
-          <div style={{ display: "inline-block", padding: "4px 16px", background: `${maturity.color}20`, border: `1px solid ${maturity.color}`, borderRadius: 100, color: maturity.color, fontSize: 13, fontWeight: 700, marginBottom: 8 }}>
-            {maturity.level}
-          </div>
-          <p style={{ color: "var(--gray-light)", fontSize: 14, margin: 0 }}>{maturity.description}</p>
+          {(isCEO ? auditScores.overall : myScores.overall) > 0 ? (
+            <>
+              <div style={{ fontSize: 56, fontWeight: 900, color: maturity.color, letterSpacing: "-0.03em", marginBottom: 4 }}>
+                {isCEO ? auditScores.overall : myScores.overall}
+                <span style={{ fontSize: 24, fontWeight: 400, color: "var(--gray)" }}>/100</span>
+              </div>
+              <div style={{ display: "inline-block", padding: "4px 16px", background: `${maturity.color}20`, border: `1px solid ${maturity.color}`, borderRadius: 100, color: maturity.color, fontSize: 13, fontWeight: 700, marginBottom: 8 }}>
+                {maturity.level}
+              </div>
+              <p style={{ color: "var(--gray-light)", fontSize: 14, margin: 0 }}>{maturity.description}</p>
+            </>
+          ) : (
+            <p style={{ color: "var(--gray-light)", fontSize: 15, margin: 0 }}>
+              Votre score sera calculé dès que d&apos;autres répondants auront complété le questionnaire.
+            </p>
+          )}
         </div>
 
         {/* Pillar scores */}
+        {(isCEO ? auditScores : myScores).pillars.filter((p) => p.dataPoints > 0).length > 0 && (
         <div className="card" style={{ padding: 28, marginBottom: 24 }}>
           <p style={{ fontSize: 12, fontWeight: 700, color: "var(--gray-light)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 20 }}>
             Scores par pilier vs. moyenne {regionLabel}
@@ -139,6 +148,7 @@ export default async function ResultsPage({ params }: { params: Promise<{ token:
             ▎ Ligne de référence = moyenne des PME {regionLabel}
           </p>
         </div>
+        )}
 
         {/* CEO: completion status + next steps */}
         {isCEO && (

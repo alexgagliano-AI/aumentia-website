@@ -139,6 +139,15 @@ body {
   border-radius: inherit;
 }
 
+/* Admin card link hover — CSS only, works in server components */
+a .card, .card-link {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+a:hover .card, .card-link:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 20px var(--cyan-dim);
+}
+
 /* Animations */
 @keyframes pulse-cyan {
   0%, 100% { box-shadow: 0 0 0 0 var(--cyan-glow); }

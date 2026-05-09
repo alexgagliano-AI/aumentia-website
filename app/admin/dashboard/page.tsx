@@ -107,10 +107,7 @@ export default async function Dashboard() {
                   href={`/admin/audits/${audit.id}`}
                   style={{ textDecoration: "none" }}
                 >
-                  <div className="card" style={{ padding: "20px 24px", cursor: "pointer" }}
-                    onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "var(--cyan)")}
-                    onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.borderColor = "var(--dark-border)")}
-                  >
+                  <div className="card" style={{ padding: "20px 24px", cursor: "pointer" }}>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 }}>
                       <div style={{ flex: 1, minWidth: 0 }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 6 }}>

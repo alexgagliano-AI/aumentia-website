@@ -288,10 +288,15 @@ export default function QuestionnaireClient({
           {currentSection < totalSections - 1 ? (
             <button
               onClick={handleNext}
+              disabled={!isSectionComplete}
+              title={!isSectionComplete ? "Veuillez répondre à toutes les questions obligatoires" : ""}
               style={{
                 padding: "12px 28px",
-                background: "var(--cyan)", color: "var(--dark)",
-                border: "none", borderRadius: 10, fontWeight: 700, fontSize: 14, cursor: "pointer",
+                background: isSectionComplete ? "var(--cyan)" : "var(--dark-border)",
+                color: isSectionComplete ? "var(--dark)" : "var(--gray)",
+                border: "none", borderRadius: 10, fontWeight: 700, fontSize: 14,
+                cursor: isSectionComplete ? "pointer" : "not-allowed",
+                transition: "all 0.2s",
               }}
             >
               Section suivante →
@@ -299,13 +304,13 @@ export default function QuestionnaireClient({
           ) : (
             <button
               onClick={handleSubmit}
-              disabled={submitting}
+              disabled={submitting || !isSectionComplete}
               style={{
                 padding: "14px 32px",
-                background: submitting ? "var(--dark-border)" : "var(--cyan)",
-                color: submitting ? "var(--gray)" : "var(--dark)",
+                background: submitting || !isSectionComplete ? "var(--dark-border)" : "var(--cyan)",
+                color: submitting || !isSectionComplete ? "var(--gray)" : "var(--dark)",
                 border: "none", borderRadius: 10, fontWeight: 700, fontSize: 15,
-                cursor: submitting ? "not-allowed" : "pointer",
+                cursor: submitting || !isSectionComplete ? "not-allowed" : "pointer",
               }}
             >
               {submitting ? "Envoi en cours…" : "Soumettre mes réponses ✓"}
