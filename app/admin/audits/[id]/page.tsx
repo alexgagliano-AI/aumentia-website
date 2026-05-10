@@ -205,6 +205,7 @@ export default async function AuditDetail({ params }: { params: Promise<{ id: st
               content={audit.report_content}
               companyName={company?.name ?? ""}
               generatedAt={audit.report_generated_at}
+              auditId={id}
             />
           </div>
         )}

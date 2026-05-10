@@ -6,9 +6,10 @@ interface Props {
   content: string;
   companyName: string;
   generatedAt: string | null;
+  auditId: string;
 }
 
-export default function ReportViewer({ content, companyName, generatedAt }: Props) {
+export default function ReportViewer({ content, companyName, generatedAt, auditId }: Props) {
   const [copied, setCopied] = useState(false);
 
   function copyToClipboard() {
@@ -44,16 +45,30 @@ export default function ReportViewer({ content, companyName, generatedAt }: Prop
             </p>
           )}
         </div>
-        <button
-          onClick={copyToClipboard}
-          style={{
-            padding: "8px 16px", background: "transparent",
-            border: "1px solid var(--dark-border)", borderRadius: 8,
-            color: copied ? "#10B981" : "var(--gray-light)", fontSize: 12, cursor: "pointer",
-          }}
-        >
-          {copied ? "✓ Copié !" : "📋 Copier"}
-        </button>
+        <div style={{ display: "flex", gap: 8 }}>
+          <a
+            href={`/admin/audits/${auditId}/report-print`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              padding: "8px 16px", background: "var(--cyan)", color: "var(--dark)",
+              borderRadius: 8, fontSize: 12, fontWeight: 700, textDecoration: "none",
+              display: "inline-flex", alignItems: "center", gap: 6,
+            }}
+          >
+            🖨️ Rapport PDF
+          </a>
+          <button
+            onClick={copyToClipboard}
+            style={{
+              padding: "8px 16px", background: "transparent",
+              border: "1px solid var(--dark-border)", borderRadius: 8,
+              color: copied ? "#10B981" : "var(--gray-light)", fontSize: 12, cursor: "pointer",
+            }}
+          >
+            {copied ? "✓ Copié !" : "📋 Copier"}
+          </button>
+        </div>
       </div>
       <div
         className="card"
