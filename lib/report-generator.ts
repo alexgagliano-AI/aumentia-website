@@ -1,6 +1,7 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { PILLAR_LABELS, BENCHMARKS, type DiagnosticScores } from "./scoring";
 import { ROLE_LABELS, type Role } from "./questions";
+import type { Lang } from "./i18n-diagnostic";
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
@@ -21,10 +22,11 @@ interface ReportInput {
   respondents: RespondentData[];
   respondentCount: number;
   totalInvited: number;
+  language?: Lang;
 }
 
 export async function generateReport(input: ReportInput): Promise<string> {
-  const { company, scores, respondents, respondentCount, totalInvited } = input;
+  const { company, scores, respondents, respondentCount, totalInvited, language = "fr" } = input;
 
   // Build a structured summary of all responses for the prompt
   const responseSummary = respondents.map((r) => {
@@ -36,14 +38,20 @@ export async function generateReport(input: ReportInput): Promise<string> {
       .filter((res) => res.score !== null)
       .map((res) => `  Q[${res.question_id}]: ${res.score}/5`)
       .join("\n");
-    return `### ${r.name} — ${ROLE_LABELS[r.role]}\nRéponses textuelles:\n${textAnswers}\nScores:\n${scaleAnswers}`;
+    return `### ${r.name} — ${ROLE_LABELS[r.role]}\nText answers:\n${textAnswers}\nScores:\n${scaleAnswers}`;
   }).join("\n\n");
 
   const pillarSection = scores.pillars
     .map((p) => `- ${p.label}: ${p.score}/100 (benchmark belge: ${BENCHMARKS[p.pillar]}/100)`)
     .join("\n");
 
-  const prompt = `Tu es un expert en stratégie IA pour les entreprises, travaillant pour Aumentia (cabinet de conseil IA + Scaling Up). Tu dois rédiger un rapport de diagnostic IA stratégique en français pour la société "${company.name}".
+  const langInstruction = language === "en"
+    ? "You must write the entire report in English."
+    : language === "it"
+    ? "Devi scrivere l'intero report in italiano."
+    : "Tu dois rédiger le rapport entièrement en français.";
+
+  const prompt = `Tu es un expert en stratégie IA pour les entreprises, travaillant pour Aumentia (cabinet de conseil IA + Scaling Up). ${langInstruction} Le rapport concerne la société "${company.name}".
 
 DONNÉES DE L'ENTREPRISE:
 - Secteur: ${company.industry || "Non précisé"}

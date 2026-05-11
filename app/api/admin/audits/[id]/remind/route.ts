@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createClient, createServiceClient } from "@/lib/supabase/server";
 import { Resend } from "resend";
 import { reminderEmail } from "@/lib/email-templates";
+import { ROLE_LABELS_I18N, type Lang } from "@/lib/i18n-diagnostic";
 import { ROLE_LABELS } from "@/lib/questions";
 import type { Role } from "@/lib/questions";
 
@@ -21,11 +22,12 @@ export async function POST(
 
   const { data: audit } = await serviceClient
     .from("audits")
-    .select("title, companies (name)")
+    .select("title, language, companies (name)")
     .eq("id", id)
     .single();
 
   const companyName = (audit?.companies as unknown as { name: string } | null)?.name ?? "";
+  const lang: Lang = ((audit as { language?: string } | null)?.language as Lang) ?? "fr";
   const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://aumentia.ai";
 
   // Fetch respondents to remind
@@ -53,12 +55,14 @@ export async function POST(
     const daysElapsed = Math.floor((Date.now() - sentAt.getTime()) / (1000 * 60 * 60 * 24));
     const link = `${appUrl}/respond/${r.token}`;
 
+    const roleLabel = ROLE_LABELS_I18N[lang][r.role] ?? ROLE_LABELS[r.role];
     const { subject, html } = reminderEmail({
       name: r.name,
       companyName,
-      roleLabel: ROLE_LABELS[r.role],
+      roleLabel,
       link,
       daysElapsed: Math.max(daysElapsed, 1),
+      lang,
     });
 
     try {

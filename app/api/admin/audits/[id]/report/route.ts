@@ -3,6 +3,7 @@ import { createClient, createServiceClient } from "@/lib/supabase/server";
 import { calculateScores } from "@/lib/scoring";
 import { generateReport } from "@/lib/report-generator";
 import type { Role } from "@/lib/questions";
+import type { Lang } from "@/lib/i18n-diagnostic";
 
 export async function POST(
   _req: NextRequest,
@@ -27,6 +28,7 @@ export async function POST(
   const company = audit.companies as {
     name: string; industry?: string; size?: string; country?: string;
   } | null;
+  const lang: Lang = ((audit as { language?: string }).language as Lang) ?? "fr";
 
   // Fetch all respondents who completed
   const { data: respondents } = await serviceClient
@@ -63,6 +65,7 @@ export async function POST(
       respondents: respondentData,
       respondentCount: completed.length,
       totalInvited: respondents?.length ?? 0,
+      language: lang,
     });
 
     // Save report to DB

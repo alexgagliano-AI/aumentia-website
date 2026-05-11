@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { SECTIONS, type Question, type Role } from "@/lib/questions";
+import { UI, SECTION_LABELS, type Lang } from "@/lib/i18n-diagnostic";
 
 interface Props {
   token: string;
@@ -14,29 +15,30 @@ interface Props {
   companyName: string;
   questions: Question[];
   savedAnswers: Record<string, string>;
+  lang: Lang;
 }
 
 export default function QuestionnaireClient({
   token, respondentId, respondentName, respondentRole,
-  roleLabel, companyName, questions, savedAnswers,
+  roleLabel, companyName, questions, savedAnswers, lang,
 }: Props) {
   const router = useRouter();
+  const ui = UI[lang];
+  const sectionLabels = SECTION_LABELS[lang];
   const [answers, setAnswers] = useState<Record<string, string>>(savedAnswers);
   const [currentSection, setCurrentSection] = useState(0);
   const [saving, setSaving] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [started, setStarted] = useState(false);
 
-  // Group questions by section (only sections with questions for this role)
   const sections = SECTIONS
-    .map((s) => ({ ...s, questions: questions.filter((q) => q.section === s.id) }))
+    .map((s) => ({ ...s, label: sectionLabels[s.id] ?? s.label, questions: questions.filter((q) => q.section === s.id) }))
     .filter((s) => s.questions.length > 0);
 
   const current = sections[currentSection];
   const totalSections = sections.length;
   const pct = Math.round(((currentSection) / totalSections) * 100);
 
-  // Auto-save current section
   async function saveSection(sectionQuestions: Question[]) {
     setSaving(true);
     try {
@@ -86,17 +88,17 @@ export default function QuestionnaireClient({
       if (res.ok) {
         router.push(`/results/${token}`);
       } else {
-        alert("Une erreur est survenue. Veuillez réessayer.");
+        alert(ui.errorOccurred);
         setSubmitting(false);
       }
     } catch {
-      alert("Une erreur est survenue. Veuillez réessayer.");
+      alert(ui.errorOccurred);
       setSubmitting(false);
     }
   }
 
   const isSectionComplete = current?.questions.every((q) => {
-    if (q.type === "text") return true; // text is optional
+    if (q.type === "text") return true;
     return answers[q.id] !== undefined && answers[q.id] !== "";
   });
 
@@ -118,20 +120,20 @@ export default function QuestionnaireClient({
           </div>
           <div className="card" style={{ padding: 40, textAlign: "center" }}>
             <div style={{ marginBottom: 8 }}>
-              <span className="badge">🎯 Diagnostic IA</span>
+              <span className="badge">🎯 {ui.badge}</span>
             </div>
             <h1 style={{ fontSize: 26, fontWeight: 900, letterSpacing: "-0.02em", margin: "20px 0 12px" }}>
-              Bonjour {respondentName} !
+              {ui.hello} {respondentName} !
             </h1>
             <p style={{ color: "var(--gray-light)", fontSize: 16, lineHeight: 1.7, marginBottom: 28 }}>
-              Vous participez au <strong style={{ color: "#fff" }}>Diagnostic IA de {companyName}</strong>.
-              En tant que <strong style={{ color: "var(--cyan)" }}>{roleLabel}</strong>, votre perspective est précieuse.
+              {ui.participates} <strong style={{ color: "#fff" }}>{ui.badge} {lang === "it" ? "di" : lang === "en" ? "of" : "de"} {companyName}</strong>.{" "}
+              {ui.asRole} <strong style={{ color: "var(--cyan)" }}>{roleLabel}</strong>, {ui.yourPerspective}
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 32, textAlign: "left" }}>
               {[
-                ["⏱", "20 à 30 minutes", "À compléter en une ou plusieurs fois"],
-                ["🔒", "Confidentiel", "Vos réponses sont traitées de manière anonyme"],
-                ["🎯", "Impact direct", "Vos insights alimentent le plan IA stratégique"],
+                ["⏱", ui.time, ui.timeDesc],
+                ["🔒", ui.confidential, ui.confidentialDesc],
+                ["🎯", ui.impact, ui.impactDesc],
               ].map(([icon, title, desc]) => (
                 <div key={title} style={{ display: "flex", gap: 14, padding: "12px 16px", background: "var(--dark)", borderRadius: 10, border: "1px solid var(--dark-border)" }}>
                   <span style={{ fontSize: 20, flexShrink: 0 }}>{icon}</span>
@@ -151,7 +153,7 @@ export default function QuestionnaireClient({
                 fontSize: 16, cursor: "pointer",
               }}
             >
-              Démarrer le questionnaire →
+              {ui.start}
             </button>
           </div>
         </div>
@@ -161,7 +163,6 @@ export default function QuestionnaireClient({
 
   return (
     <div style={{ minHeight: "100vh", background: "var(--dark)" }}>
-      {/* Top bar */}
       <div style={{
         position: "sticky", top: 0, zIndex: 10,
         background: "rgba(5,5,5,0.95)", backdropFilter: "blur(12px)",
@@ -177,11 +178,10 @@ export default function QuestionnaireClient({
           <span style={{ fontSize: 12, color: "var(--gray-light)", whiteSpace: "nowrap" }}>
             {currentSection + 1} / {totalSections}
           </span>
-          {saving && <span style={{ fontSize: 11, color: "var(--gray)" }}>Sauvegarde…</span>}
+          {saving && <span style={{ fontSize: 11, color: "var(--gray)" }}>{ui.saving}</span>}
         </div>
       </div>
 
-      {/* Content */}
       <main style={{ maxWidth: 680, margin: "0 auto", padding: "48px 24px 80px" }}>
         <div style={{ marginBottom: 36 }}>
           <div style={{ marginBottom: 6 }}>
@@ -202,7 +202,7 @@ export default function QuestionnaireClient({
               {q.type === "text" && (
                 <textarea
                   style={inputStyle}
-                  placeholder={q.placeholder ?? "Votre réponse…"}
+                  placeholder={q.placeholder ?? (lang === "en" ? "Your answer…" : lang === "it" ? "La tua risposta…" : "Votre réponse…")}
                   value={answers[q.id] ?? ""}
                   onChange={(e) => setAnswers((a) => ({ ...a, [q.id]: e.target.value }))}
                   onFocus={(e) => (e.target.style.borderColor = "var(--cyan)")}
@@ -274,14 +274,13 @@ export default function QuestionnaireClient({
           ))}
         </div>
 
-        {/* Navigation */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 48 }}>
           {currentSection > 0 ? (
             <button
               onClick={() => { setCurrentSection((s) => s - 1); window.scrollTo({ top: 0, behavior: "smooth" }); }}
               style={{ padding: "12px 24px", background: "transparent", border: "1px solid var(--dark-border)", borderRadius: 10, color: "var(--gray-light)", fontSize: 14, cursor: "pointer" }}
             >
-              ← Précédent
+              {ui.prev}
             </button>
           ) : <div />}
 
@@ -289,7 +288,7 @@ export default function QuestionnaireClient({
             <button
               onClick={handleNext}
               disabled={!isSectionComplete}
-              title={!isSectionComplete ? "Veuillez répondre à toutes les questions obligatoires" : ""}
+              title={!isSectionComplete ? ui.mustAnswer : ""}
               style={{
                 padding: "12px 28px",
                 background: isSectionComplete ? "var(--cyan)" : "var(--dark-border)",
@@ -299,7 +298,7 @@ export default function QuestionnaireClient({
                 transition: "all 0.2s",
               }}
             >
-              Section suivante →
+              {ui.next}
             </button>
           ) : (
             <button
@@ -313,7 +312,7 @@ export default function QuestionnaireClient({
                 cursor: submitting || !isSectionComplete ? "not-allowed" : "pointer",
               }}
             >
-              {submitting ? "Envoi en cours…" : "Soumettre mes réponses ✓"}
+              {submitting ? ui.submitting : ui.submit}
             </button>
           )}
         </div>

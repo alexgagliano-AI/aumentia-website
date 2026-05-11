@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase/server";
 import { Resend } from "resend";
 import { thankYouEmail, completionNotificationEmail } from "@/lib/email-templates";
+import { ROLE_LABELS_I18N, type Lang } from "@/lib/i18n-diagnostic";
+import { ROLE_LABELS } from "@/lib/questions";
+import type { Role } from "@/lib/questions";
 
 function getResend() { return new Resend(process.env.RESEND_API_KEY); }
 
@@ -37,10 +40,9 @@ export async function POST(
 
   const { respondentId, answers, partial } = await req.json();
 
-  // Verify token matches respondent
   const { data: respondent } = await supabase
     .from("respondents")
-    .select("*, audits (id, title, created_by, companies (name))")
+    .select("*, audits (id, title, language, created_by, companies (name))")
     .eq("token", token)
     .eq("id", respondentId)
     .single();
@@ -50,7 +52,6 @@ export async function POST(
     return NextResponse.json({ error: "Already submitted" }, { status: 409 });
   }
 
-  // Upsert responses
   if (answers && answers.length > 0) {
     const upsertData = answers.map((a: { question_id: string; answer: string | null; score: number | null }) => ({
       respondent_id: respondentId,
@@ -67,7 +68,6 @@ export async function POST(
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  // If final submission (not partial save)
   if (!partial) {
     await supabase
       .from("respondents")
@@ -75,19 +75,20 @@ export async function POST(
       .eq("id", respondentId);
 
     const audit = respondent.audits as {
-      id: string; title: string; created_by: string | null;
+      id: string; title: string; language?: string; created_by: string | null;
       companies: { name: string } | null;
     } | null;
 
+    const lang: Lang = (audit?.language as Lang) ?? "fr";
     const companyName = audit?.companies?.name ?? "l'entreprise";
     const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://aumentia.ai";
 
-    // Send thank you to respondent
     try {
       const { subject, html } = thankYouEmail({
         name: respondent.name,
         companyName,
         resultsLink: `${appUrl}/results/${token}`,
+        lang,
       });
       await getResend().emails.send({
         from: process.env.RESEND_FROM_EMAIL ?? "noreply@aumentia.ai",
@@ -97,7 +98,6 @@ export async function POST(
       });
     } catch { /* non-blocking */ }
 
-    // Check if all respondents completed — notify admin
     if (audit?.id) {
       const { data: allRespondents } = await supabase
         .from("respondents")
@@ -107,15 +107,7 @@ export async function POST(
       const completedCount = allRespondents?.filter((r) => r.status === "completed").length ?? 0;
       const totalCount = allRespondents?.length ?? 0;
 
-      // Notify admin (creator)
       if (audit.created_by) {
-        const { data: adminProfile } = await supabase
-          .from("admin_profiles")
-          .select("id")
-          .eq("id", audit.created_by)
-          .single();
-
-        // Get admin email from auth (via service client)
         const { data: adminUser } = await supabase.auth.admin.getUserById(audit.created_by);
         const adminEmail = adminUser?.user?.email;
 

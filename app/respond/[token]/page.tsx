@@ -1,7 +1,8 @@
 import { createServiceClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import QuestionnaireClient from "@/components/QuestionnaireClient";
-import { getQuestionsForRole, ROLE_LABELS } from "@/lib/questions";
+import { getQuestionsI18n, ROLE_LABELS } from "@/lib/questions";
+import { ROLE_LABELS_I18N, UI, type Lang } from "@/lib/i18n-diagnostic";
 import type { Role } from "@/lib/questions";
 
 export default async function RespondPage({ params }: { params: Promise<{ token: string }> }) {
@@ -10,20 +11,24 @@ export default async function RespondPage({ params }: { params: Promise<{ token:
 
   const { data: respondent } = await supabase
     .from("respondents")
-    .select("*, audits (title, companies (name))")
+    .select("*, audits (title, language, companies (name))")
     .eq("token", token)
     .single();
 
   if (!respondent) notFound();
+
+  const audit = respondent.audits as { title: string; language?: string; companies: { name: string } | null } | null;
+  const lang: Lang = (audit?.language as Lang) ?? "fr";
+  const ui = UI[lang];
 
   if (respondent.status === "completed") {
     return (
       <div style={{ minHeight: "100vh", background: "var(--dark)", display: "flex", alignItems: "center", justifyContent: "center", padding: 24 }}>
         <div style={{ maxWidth: 480, textAlign: "center" }}>
           <div style={{ fontSize: 56, marginBottom: 20 }}>✅</div>
-          <h1 style={{ fontSize: 26, fontWeight: 900, marginBottom: 12 }}>Déjà complété !</h1>
+          <h1 style={{ fontSize: 26, fontWeight: 900, marginBottom: 12 }}>{ui.alreadyDone}</h1>
           <p style={{ color: "var(--gray-light)", fontSize: 16, lineHeight: 1.7 }}>
-            Vous avez déjà répondu à ce questionnaire. Merci pour votre contribution.
+            {ui.alreadyDoneText}
           </p>
           <a
             href={`${process.env.NEXT_PUBLIC_APP_URL}/results/${token}`}
@@ -34,18 +39,18 @@ export default async function RespondPage({ params }: { params: Promise<{ token:
               fontSize: 14, textDecoration: "none",
             }}
           >
-            Voir mes résultats →
+            {ui.seeResults}
           </a>
         </div>
       </div>
     );
   }
 
-  const audit = respondent.audits as { title: string; companies: { name: string } | null } | null;
   const company = audit?.companies;
-  const questions = getQuestionsForRole(respondent.role as Role);
+  const role = respondent.role as Role;
+  const questions = getQuestionsI18n(role, lang);
+  const roleLabel = ROLE_LABELS_I18N[lang][role] ?? ROLE_LABELS[role];
 
-  // Fetch any existing partial responses
   const { data: existingResponses } = await supabase
     .from("responses")
     .select("question_id, answer, score")
@@ -61,11 +66,12 @@ export default async function RespondPage({ params }: { params: Promise<{ token:
       token={token}
       respondentId={respondent.id}
       respondentName={respondent.name}
-      respondentRole={respondent.role as Role}
-      roleLabel={ROLE_LABELS[respondent.role as Role]}
-      companyName={company?.name ?? "votre entreprise"}
+      respondentRole={role}
+      roleLabel={roleLabel}
+      companyName={company?.name ?? (lang === "en" ? "your company" : lang === "it" ? "la tua azienda" : "votre entreprise")}
       questions={questions}
       savedAnswers={savedAnswers}
+      lang={lang}
     />
   );
 }

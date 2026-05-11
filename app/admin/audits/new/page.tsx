@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ROLE_LABELS, type Role } from "@/lib/questions";
+import { LANG_LABELS, type Lang } from "@/lib/i18n-diagnostic";
 
 const ROLES: Role[] = ["ceo", "cfo", "coo", "sales", "ops", "hr", "employee"];
 
@@ -19,12 +20,11 @@ export default function NewAudit() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Step 1: Company
   const [company, setCompany] = useState({
     name: "", industry: "", size: "11-50", country: "Belgique", region: "",
   });
+  const [language, setLanguage] = useState<Lang>("fr");
 
-  // Step 2: Respondents
   const [respondents, setRespondents] = useState<Respondent[]>([
     { name: "", email: "", role: "ceo" },
   ]);
@@ -50,7 +50,7 @@ export default function NewAudit() {
       const res = await fetch("/api/admin/audits", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ company, respondents }),
+        body: JSON.stringify({ company, respondents, language }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Erreur serveur");
@@ -86,7 +86,6 @@ export default function NewAudit() {
       </div>
 
       <main style={{ maxWidth: 720, margin: "0 auto", padding: "40px 24px" }}>
-        {/* Progress */}
         <div style={{ display: "flex", gap: 8, marginBottom: 40 }}>
           {["Entreprise", "Répondants", "Lancement"].map((label, i) => (
             <div key={i} style={{ flex: 1, textAlign: "center" }}>
@@ -102,7 +101,6 @@ export default function NewAudit() {
           ))}
         </div>
 
-        {/* STEP 1: Company */}
         {step === 1 && (
           <div>
             <h2 style={{ fontSize: 22, fontWeight: 800, marginBottom: 4 }}>Informations de l&apos;entreprise</h2>
@@ -142,6 +140,27 @@ export default function NewAudit() {
                     placeholder="Ex: Bruxelles, Liège, Namur…" />
                 </div>
               </div>
+              <div>
+                <label style={labelStyle}>Langue du questionnaire</label>
+                <div style={{ display: "flex", gap: 8 }}>
+                  {(Object.entries(LANG_LABELS) as [Lang, string][]).map(([code, label]) => (
+                    <button
+                      key={code}
+                      type="button"
+                      onClick={() => setLanguage(code)}
+                      style={{
+                        padding: "8px 16px", borderRadius: 8, fontSize: 14, cursor: "pointer",
+                        border: language === code ? "1px solid var(--cyan)" : "1px solid var(--dark-border)",
+                        background: language === code ? "var(--cyan-dim)" : "var(--dark)",
+                        color: language === code ? "var(--cyan)" : "var(--gray-light)",
+                        fontWeight: language === code ? 700 : 400,
+                      }}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
             <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 24 }}>
               <button
@@ -159,7 +178,6 @@ export default function NewAudit() {
           </div>
         )}
 
-        {/* STEP 2: Respondents */}
         {step === 2 && (
           <div>
             <h2 style={{ fontSize: 22, fontWeight: 800, marginBottom: 4 }}>Répondants</h2>
@@ -229,7 +247,6 @@ export default function NewAudit() {
           </div>
         )}
 
-        {/* STEP 3: Summary */}
         {step === 3 && (
           <div>
             <h2 style={{ fontSize: 22, fontWeight: 800, marginBottom: 4 }}>Récapitulatif & Lancement</h2>
@@ -243,6 +260,7 @@ export default function NewAudit() {
               <p style={{ fontSize: 18, fontWeight: 700, marginBottom: 4 }}>{company.name}</p>
               <p style={{ color: "var(--gray-light)", fontSize: 13 }}>
                 {[company.industry, company.size + " employés", company.country].filter(Boolean).join(" · ")}
+                {" · "}{LANG_LABELS[language]}
               </p>
             </div>
             <div className="card" style={{ padding: 24, marginBottom: 24 }}>

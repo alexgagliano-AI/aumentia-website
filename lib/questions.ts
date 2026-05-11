@@ -560,6 +560,23 @@ export function getQuestionsForRole(role: Role): Question[] {
   );
 }
 
+export function getQuestionsI18n(role: Role, lang: import("./i18n-diagnostic").Lang): Question[] {
+  const { QUESTION_TRANSLATIONS } = require("./i18n-diagnostic");
+  return getQuestionsForRole(role).map((q) => {
+    const t = QUESTION_TRANSLATIONS[lang]?.[q.id];
+    if (!t) return q;
+    return {
+      ...q,
+      text: t.text,
+      placeholder: t.placeholder ?? q.placeholder,
+      options: q.options?.map((opt) => ({
+        ...opt,
+        label: t.options?.[opt.value] ?? opt.label,
+      })),
+    };
+  });
+}
+
 export function getQuestionsBySection(role: Role): Record<string, Question[]> {
   const questions = getQuestionsForRole(role);
   const bySection: Record<string, Question[]> = {};
