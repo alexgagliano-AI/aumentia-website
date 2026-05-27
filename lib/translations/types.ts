@@ -44,6 +44,26 @@ export interface Translations {
     title: string;
     items: { quote: string; name: string; role: string }[];
   };
+  diagnostic: {
+    badge: string;
+    title: string;
+    titleAccent: string;
+    subtitle: string;
+    form: {
+      name: string;
+      email: string;
+      company: string;
+      role: string;
+      rolePlaceholder: string;
+      roles: { ceo: string; coo: string; cfo: string; other: string };
+      employees: string;
+      employeesPlaceholder: string;
+      submit: string;
+      sending: string;
+      success: string;
+      successSub: string;
+    };
+  };
   finalcta: {
     title: string;
     subtitle: string;

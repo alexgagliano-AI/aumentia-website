@@ -1,5 +1,6 @@
 import { getTranslations } from "@/lib/i18n";
 import Image from "next/image";
+import DiagnosticRequest from "@/components/DiagnosticRequest";
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -218,6 +219,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </div>
         </div>
       </section>
+
+      {/* DIAGNOSTIC REQUEST */}
+      <DiagnosticRequest t={t.diagnostic} />
 
       {/* VALUES */}
       <section className="section" style={{ background: "var(--dark-card)" }}>
