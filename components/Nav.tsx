@@ -10,8 +10,8 @@ interface NavProps {
   locale: string;
   t: {
     home: string;
-    audit: string;
-    coaching: string;
+    offer: string;
+    results: string;
     contact: string;
     cta: string;
   };
@@ -37,8 +37,8 @@ export default function Nav({ locale, t }: NavProps) {
 
   const links = [
     { href: `/${locale}`, label: t.home },
-    { href: `/${locale}/audit`, label: t.audit },
-    { href: `/${locale}/coaching`, label: t.coaching },
+    { href: `/${locale}#offer`, label: t.offer },
+    { href: `/${locale}#results`, label: t.results },
     { href: `/${locale}/contact`, label: t.contact },
   ];
 

@@ -1,5 +1,4 @@
 import { getTranslations } from "@/lib/i18n";
-import Link from "next/link";
 import Image from "next/image";
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
@@ -16,33 +15,33 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         {/* Background glow */}
         <div style={{
           position: "absolute", top: "30%", left: "50%", transform: "translate(-50%, -50%)",
-          width: 600, height: 600, borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(0,212,200,0.08) 0%, transparent 70%)",
+          width: 700, height: 700, borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(0,212,200,0.07) 0%, transparent 70%)",
           pointerEvents: "none",
         }} />
 
         <div className="container" style={{ textAlign: "center", position: "relative" }}>
           {/* Badge */}
           <div style={{ display: "flex", justifyContent: "center", marginBottom: 32 }}>
-            <span className="badge">✦ {t.hero.badge}</span>
+            <span className="badge">⚡ {t.hero.badge}</span>
           </div>
 
           {/* Main title */}
           <h1 style={{
-            fontSize: "clamp(42px, 7vw, 88px)",
+            fontSize: "clamp(40px, 7vw, 84px)",
             fontWeight: 900,
             lineHeight: 1.05,
             letterSpacing: "-0.03em",
             marginBottom: 28,
           }}>
-            <span style={{ color: "#fff" }}>{t.hero.title1}<br />{t.hero.title2}<br /></span>
-            <span className="gradient-text">{t.hero.title3}</span>
+            <span style={{ color: "#fff" }}>{t.hero.h1}<br /></span>
+            <span className="gradient-text">{t.hero.h1accent}</span>
           </h1>
 
           <p style={{
             fontSize: "clamp(16px, 2vw, 20px)",
             color: "var(--gray-light)",
-            maxWidth: 580,
+            maxWidth: 560,
             margin: "0 auto 48px",
             lineHeight: 1.7,
           }}>
@@ -50,48 +49,27 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </p>
 
           {/* CTAs */}
-          <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", marginBottom: 80 }}>
+          <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
             <a href="https://calendly.com/alex-aumentia" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ fontSize: 16, padding: "14px 32px" }}>
               {t.hero.cta1} →
             </a>
-            <Link href={`/${locale}/audit`} className="btn-outline" style={{ fontSize: 16, padding: "14px 32px" }}>
+            <a href={`/${locale}#offer`} className="btn-outline" style={{ fontSize: 16, padding: "14px 32px" }}>
               {t.hero.cta2}
-            </Link>
-          </div>
-
-          {/* Stats */}
-          <div style={{
-            display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 1, maxWidth: 720, margin: "0 auto",
-            background: "var(--dark-border)", borderRadius: 16, overflow: "hidden",
-            border: "1px solid var(--dark-border)",
-          }}>
-            {[t.hero.stat1, t.hero.stat2, t.hero.stat3].map((stat, i) => (
-              <div key={i} style={{
-                background: "var(--dark-card)", padding: "28px 24px", textAlign: "center",
-              }}>
-                <div style={{ fontSize: "clamp(28px, 4vw, 40px)", fontWeight: 900, color: "var(--cyan)", letterSpacing: "-0.02em" }}>
-                  {stat.value}
-                </div>
-                <div style={{ fontSize: 13, color: "var(--gray-light)", marginTop: 4 }}>
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+            </a>
           </div>
         </div>
       </section>
 
-      {/* PROBLEM */}
+      {/* PAIN */}
       <section className="section" style={{ background: "var(--dark-card)" }}>
         <div className="container">
           <div style={{ maxWidth: 800, margin: "0 auto" }}>
-            <div style={{ marginBottom: 20 }}><span className="badge">⚡ {t.problem.badge}</span></div>
-            <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, letterSpacing: "-0.02em", marginBottom: 48, lineHeight: 1.2 }}>
-              {t.problem.title}
+            <div style={{ marginBottom: 20 }}><span className="badge">⚡ {t.pain.badge}</span></div>
+            <h2 style={{ fontSize: "clamp(26px, 4vw, 44px)", fontWeight: 800, letterSpacing: "-0.02em", marginBottom: 48, lineHeight: 1.2 }}>
+              {t.pain.title}
             </h2>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 40 }}>
-              {t.problem.items.map((item, i) => (
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 40 }} className="two-col">
+              {t.pain.items.map((item, i) => (
                 <div key={i} style={{
                   display: "flex", alignItems: "flex-start", gap: 12,
                   padding: "16px 20px", background: "var(--dark)", borderRadius: 12,
@@ -103,82 +81,79 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               ))}
             </div>
             <div style={{
-              padding: "20px 24px", background: "rgba(200,146,42,0.08)",
-              border: "1px solid rgba(200,146,42,0.3)", borderRadius: 12,
+              padding: "20px 24px", background: "rgba(0,212,200,0.06)",
+              border: "1px solid rgba(0,212,200,0.25)", borderRadius: 12,
             }}>
-              <p style={{ color: "var(--gold)", fontSize: 15, fontWeight: 500, margin: 0 }}>
-                ⚠️ {t.problem.conclusion}
+              <p style={{ color: "var(--cyan)", fontSize: 15, fontWeight: 600, margin: 0 }}>
+                ✦ {t.pain.conclusion}
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* TWO PILLARS */}
-      <section className="section">
+      {/* OFFER */}
+      <section id="offer" className="section">
         <div className="container">
+          {/* Header */}
           <div style={{ textAlign: "center", marginBottom: 64 }}>
-            <div style={{ marginBottom: 16 }}><span className="badge">◈ {t.pillars.badge}</span></div>
-            <h2 style={{ fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 900, letterSpacing: "-0.03em", marginBottom: 16 }}>
-              {t.pillars.title}
+            <div style={{ marginBottom: 16 }}><span className="badge">◈ {t.offer.badge}</span></div>
+            <h2 style={{ fontSize: "clamp(32px, 5vw, 60px)", fontWeight: 900, letterSpacing: "-0.03em", marginBottom: 16 }}>
+              <span style={{ color: "#fff" }}>{t.offer.title} </span>
+              <span className="gradient-text">{t.offer.titleAccent}</span>
             </h2>
-            <p style={{ color: "var(--gray-light)", fontSize: 18, maxWidth: 520, margin: "0 auto" }}>
-              {t.pillars.subtitle}
+            <p style={{ color: "var(--gray-light)", fontSize: 18, maxWidth: 560, margin: "0 auto" }}>
+              {t.offer.subtitle}
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
-            {/* Audit pillar */}
-            <div className="card" style={{ padding: 40, position: "relative", overflow: "hidden" }}>
-              <div style={{
-                position: "absolute", top: 0, left: 0, right: 0, height: 3,
-                background: "linear-gradient(90deg, var(--cyan), transparent)",
-              }} />
-              <div style={{
-                width: 52, height: 52, borderRadius: 12,
-                background: "var(--cyan-dim)", border: "1px solid var(--cyan)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 24, marginBottom: 24,
-              }}>🔍</div>
-              <h3 style={{ fontSize: 24, fontWeight: 700, marginBottom: 16, letterSpacing: "-0.01em" }}>
-                {t.pillars.audit.title}
-              </h3>
-              <p style={{ color: "var(--gray-light)", fontSize: 15, lineHeight: 1.7, marginBottom: 32 }}>
-                {t.pillars.audit.desc}
-              </p>
-              <Link href={`/${locale}/audit`} className="btn-primary">
-                {t.pillars.audit.cta} →
-              </Link>
+          {/* Price banner */}
+          <div style={{
+            display: "flex", alignItems: "center", justifyContent: "center", gap: 48,
+            background: "var(--dark-card)", border: "1px solid var(--dark-border)",
+            borderRadius: 20, padding: "32px 48px", marginBottom: 48, flexWrap: "wrap",
+          }}>
+            <div style={{ textAlign: "center" }}>
+              <div style={{ fontSize: "clamp(40px, 6vw, 64px)", fontWeight: 900, color: "var(--cyan)", letterSpacing: "-0.03em" }}>
+                {t.offer.price}
+              </div>
+              <div style={{ color: "var(--gray-light)", fontSize: 14, marginTop: 4 }}>{t.offer.priceLabel}</div>
             </div>
+            <div style={{ width: 1, height: 60, background: "var(--dark-border)", flexShrink: 0 }} className="price-divider" />
+            <div style={{ textAlign: "center" }}>
+              <div style={{ fontSize: "clamp(40px, 6vw, 64px)", fontWeight: 900, color: "var(--gold)", letterSpacing: "-0.03em" }}>
+                {t.offer.duration}
+              </div>
+              <div style={{ color: "var(--gray-light)", fontSize: 14, marginTop: 4 }}>{t.offer.durationLabel}</div>
+            </div>
+          </div>
 
-            {/* Coaching pillar */}
-            <div className="card" style={{ padding: 40, position: "relative", overflow: "hidden" }}>
-              <div style={{
-                position: "absolute", top: 0, left: 0, right: 0, height: 3,
-                background: "linear-gradient(90deg, var(--gold), transparent)",
-              }} />
-              <div style={{
-                width: 52, height: 52, borderRadius: 12,
-                background: "var(--gold-dim)", border: "1px solid rgba(200,146,42,0.4)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: 24, marginBottom: 24,
-              }}>🤖</div>
-              <h3 style={{ fontSize: 24, fontWeight: 700, marginBottom: 16, letterSpacing: "-0.01em" }}>
-                {t.pillars.coaching.title}
-              </h3>
-              <p style={{ color: "var(--gray-light)", fontSize: 15, lineHeight: 1.7, marginBottom: 32 }}>
-                {t.pillars.coaching.desc}
-              </p>
-              <Link href={`/${locale}/coaching`} className="btn-outline">
-                {t.pillars.coaching.cta} →
-              </Link>
-            </div>
+          {/* Deliverables grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginBottom: 48 }} className="three-col">
+            {t.offer.deliverables.map((d, i) => (
+              <div key={i} className="card" style={{ padding: "28px 24px" }}>
+                <div style={{ fontSize: 28, marginBottom: 16 }}>{d.icon}</div>
+                <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 8 }}>{d.title}</h3>
+                <p style={{ color: "var(--gray-light)", fontSize: 14, lineHeight: 1.7, margin: 0 }}>{d.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA + guarantee */}
+          <div style={{ textAlign: "center" }}>
+            <a href="https://calendly.com/alex-aumentia" target="_blank" rel="noopener noreferrer"
+              className="btn-primary" style={{ fontSize: 16, padding: "16px 40px", display: "inline-block", marginBottom: 20 }}>
+              {t.offer.cta} →
+            </a>
+            <p style={{ color: "var(--gray)", fontSize: 13, margin: 0 }}>
+              🛡️ {t.offer.guarantee}
+            </p>
           </div>
         </div>
       </section>
 
       {/* RESULTS */}
-      <section className="section" style={{ background: "var(--dark-card)" }}>
+      <section id="results" className="section" style={{ background: "var(--dark-card)" }}>
         <div className="container">
           <div style={{ textAlign: "center", marginBottom: 64 }}>
             <div style={{ marginBottom: 16 }}><span className="badge">📊 {t.results.badge}</span></div>
@@ -187,13 +162,13 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </h2>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 48 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 48 }} className="three-col">
             {t.results.items.map((item, i) => (
               <div key={i} style={{
                 padding: "32px 24px", textAlign: "center",
                 background: "var(--dark)", borderRadius: 16, border: "1px solid var(--dark-border)",
               }}>
-                <div style={{ fontSize: "clamp(32px, 4vw, 48px)", fontWeight: 900, color: "var(--cyan)", letterSpacing: "-0.02em", marginBottom: 8 }}>
+                <div style={{ fontSize: "clamp(30px, 4vw, 48px)", fontWeight: 900, color: "var(--cyan)", letterSpacing: "-0.02em", marginBottom: 8 }}>
                   {item.value}
                 </div>
                 <div style={{ color: "var(--gray-light)", fontSize: 14 }}>{item.label}</div>
@@ -203,7 +178,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
           <div style={{ textAlign: "center" }}>
             <p style={{
-              fontSize: "clamp(16px, 2vw, 20px)", fontWeight: 600,
+              fontSize: "clamp(16px, 2vw, 20px)", fontWeight: 700,
               color: "var(--gold)", maxWidth: 600, margin: "0 auto",
             }}>
               ✦ {t.results.promise}
@@ -212,8 +187,40 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
 
-      {/* VALUES */}
+      {/* SOCIAL PROOF */}
       <section className="section">
+        <div className="container">
+          <div style={{ textAlign: "center", marginBottom: 64 }}>
+            <div style={{ marginBottom: 16 }}><span className="badge">💬 {t.social.badge}</span></div>
+            <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, letterSpacing: "-0.02em" }}>
+              {t.social.title}
+            </h2>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }} className="three-col">
+            {t.social.items.map((item, i) => (
+              <div key={i} className="card" style={{ padding: "32px 28px", display: "flex", flexDirection: "column", gap: 24 }}>
+                {/* Stars */}
+                <div style={{ display: "flex", gap: 4 }}>
+                  {[...Array(5)].map((_, s) => (
+                    <span key={s} style={{ color: "var(--gold)", fontSize: 14 }}>★</span>
+                  ))}
+                </div>
+                <p style={{ color: "var(--gray-light)", fontSize: 15, lineHeight: 1.7, margin: 0, fontStyle: "italic", flexGrow: 1 }}>
+                  &ldquo;{item.quote}&rdquo;
+                </p>
+                <div>
+                  <div style={{ color: "#fff", fontWeight: 700, fontSize: 14 }}>{item.name}</div>
+                  <div style={{ color: "var(--gray)", fontSize: 13, marginTop: 4 }}>{item.role}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* VALUES */}
+      <section className="section" style={{ background: "var(--dark-card)" }}>
         <div className="container">
           <div style={{ textAlign: "center", marginBottom: 64 }}>
             <div style={{ marginBottom: 16 }}><span className="badge">◆ {t.values.badge}</span></div>
@@ -225,7 +232,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 20 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 20 }} className="two-col">
             {t.values.items.map((v, i) => (
               <div key={i} className="card" style={{ padding: "32px 36px", display: "flex", gap: 24 }}>
                 <div style={{
@@ -247,7 +254,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       {/* ABOUT ALEXANDRE */}
-      <section className="section" style={{ background: "var(--dark-card)" }}>
+      <section className="section">
         <div className="container">
           <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
             <div style={{ marginBottom: 24 }}><span className="badge">👤 {t.about.badge}</span></div>
@@ -268,7 +275,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               color: "var(--gold)", lineHeight: 1.5, marginBottom: 24,
               fontStyle: "italic", padding: "0 24px",
             }}>
-              "{t.about.bhag}"
+              &ldquo;{t.about.bhag}&rdquo;
             </blockquote>
 
             <p style={{ color: "var(--gray-light)", fontSize: 17, lineHeight: 1.8, marginBottom: 40 }}>
@@ -283,11 +290,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </section>
 
       {/* FINAL CTA */}
-      <section className="section">
+      <section className="section" style={{ background: "var(--dark-card)" }}>
         <div className="container">
           <div style={{
             textAlign: "center", padding: "64px 40px",
-            background: "var(--dark-card)", borderRadius: 24,
+            background: "var(--dark)", borderRadius: 24,
             border: "1px solid var(--dark-border)",
             position: "relative", overflow: "hidden",
           }}>
@@ -298,18 +305,14 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               pointerEvents: "none",
             }} />
             <h2 style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 900, letterSpacing: "-0.02em", marginBottom: 16, position: "relative" }}>
-              {locale === "fr" ? "Prêt à passer à l'action ?" :
-               locale === "en" ? "Ready to take action?" :
-               "Pronti ad agire?"}
+              {t.finalcta.title}
             </h2>
             <p style={{ color: "var(--gray-light)", fontSize: 18, marginBottom: 40, position: "relative" }}>
-              {locale === "fr" ? "30 minutes pour identifier vos opportunités IA. Gratuit." :
-               locale === "en" ? "30 minutes to identify your AI opportunities. Free." :
-               "30 minuti per identificare le tue opportunità IA. Gratuito."}
+              {t.finalcta.subtitle}
             </p>
             <a href="https://calendly.com/alex-aumentia" target="_blank" rel="noopener noreferrer"
               className="btn-primary" style={{ fontSize: 16, padding: "16px 40px", position: "relative" }}>
-              {t.nav.cta} →
+              {t.finalcta.cta} →
             </a>
           </div>
         </div>
@@ -318,6 +321,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <style>{`
         @media (max-width: 768px) {
           .two-col { grid-template-columns: 1fr !important; }
+          .three-col { grid-template-columns: 1fr !important; }
+          .price-divider { display: none !important; }
+        }
+        @media (max-width: 1024px) {
+          .three-col { grid-template-columns: 1fr 1fr !important; }
         }
       `}</style>
     </>

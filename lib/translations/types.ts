@@ -1,41 +1,53 @@
 export interface Translations {
   nav: {
     home: string;
-    audit: string;
-    coaching: string;
+    offer: string;
+    results: string;
     contact: string;
     cta: string;
   };
   hero: {
     badge: string;
-    title1: string;
-    title2: string;
-    title3: string;
+    h1: string;
+    h1accent: string;
     subtitle: string;
     cta1: string;
     cta2: string;
-    stat1: { value: string; label: string };
-    stat2: { value: string; label: string };
-    stat3: { value: string; label: string };
   };
-  problem: {
+  pain: {
     badge: string;
     title: string;
     items: string[];
     conclusion: string;
   };
-  pillars: {
+  offer: {
     badge: string;
     title: string;
+    titleAccent: string;
     subtitle: string;
-    audit: { title: string; desc: string; cta: string };
-    coaching: { title: string; desc: string; cta: string };
+    price: string;
+    priceLabel: string;
+    duration: string;
+    durationLabel: string;
+    deliverables: { icon: string; title: string; desc: string }[];
+    cta: string;
+    guarantee: string;
   };
   results: {
     badge: string;
     title: string;
     items: { value: string; label: string }[];
     promise: string;
+  };
+  social: {
+    badge: string;
+    title: string;
+    items: { quote: string; name: string; role: string }[];
+  };
+  finalcta: {
+    title: string;
+    subtitle: string;
+    cta: string;
   };
   values: {
     badge: string;
