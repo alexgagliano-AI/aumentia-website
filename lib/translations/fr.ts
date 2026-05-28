@@ -3,64 +3,177 @@ import type { Translations } from "./types";
 const fr: Translations = {
   nav: {
     home: "Accueil",
-    offer: "Scale Sprint",
-    results: "Résultats",
+    process: "Le process",
+    offer: "L'offre",
     contact: "Contact",
-    cta: "Démarrer le Sprint",
+    cta: "Réserver un diagnostic",
   },
   hero: {
-    badge: "Aumentia Scale Sprint",
-    h1: "On élimine le chaos",
-    h1accent: "opérationnel.",
-    subtitle: "En 30 jours, vous passez de patron pompier à CEO stratège. Une seule offre. Un résultat mesurable.",
-    cta1: "Démarrer le Sprint",
-    cta2: "Voir comment ça marche",
+    badge: "Aumentia Growth OS Sprint",
+    h1: "On élimine le chaos opérationnel dans les PME pour rendre leur croissance enfin pilotable.",
+    subtitle: "Diagnostic. Structuration. IA utile. Systèmes. En 30 jours, votre entreprise passe du chaos au pilotable — et vous passez de pompier à CEO.",
+    cta1: "Réserver un diagnostic gratuit",
+    cta2: "Voir le Sprint 30 jours",
   },
-  pain: {
+  problem: {
     badge: "Le problème",
-    title: "Vous dirigez une PME qui tourne... mais vous tournez avec elle.",
+    title: "Votre entreprise tourne. Mais vous tournez avec elle.",
     items: [
-      "Vous êtes le goulot d'étranglement de votre propre entreprise",
-      "Vos équipes ne bougent pas sans votre accord",
-      "Vous gérez encore les urgences opérationnelles au quotidien",
-      "Les décisions s'accumulent sur votre bureau",
-      "Vous ne pouvez pas partir en vacances sans que tout s'arrête",
-      "Vous voulez croître, mais vous n'avez pas la tête hors de l'eau",
+      "Tout passe par vous — chaque décision, chaque urgence, chaque problème",
+      "Vos équipes sont compétentes mais ne savent pas quoi prioriser sans vous",
+      "Vous avez des outils partout mais aucune vision claire de ce qui se passe",
+      "Vos KPIs sont inexistants, flous, ou jamais regardés",
+      "Vous perdez 10h+ par semaine sur des sujets qui ne devraient pas vous passer par les mains",
+      "La croissance est là. Le marché est là. Mais le système ne suit pas.",
     ],
-    conclusion: "Ce n'est pas un problème de compétence. C'est un problème de structure. On le résout en 30 jours.",
+    conclusion: "Ce n'est pas un problème de travail. C'est un problème de structure. Et ça se règle.",
+  },
+  consequences: {
+    badge: "L'impact réel",
+    title: "Ce que le chaos opérationnel vous coûte vraiment.",
+    items: [
+      {
+        title: "Vous êtes le goulot d'étranglement",
+        desc: "Impossible de lever la tête du guidon. Toutes les décisions remontent vers vous. Vous êtes la pierre angulaire — et le point de blocage.",
+      },
+      {
+        title: "Vos décisions sont lentes ou mauvaises",
+        desc: "Sans données claires et KPIs définis, vous pilotez à vue. Chaque décision importante prend 3x trop de temps — ou est prise trop tard.",
+      },
+      {
+        title: "Votre équipe n'est pas à son potentiel",
+        desc: "Quand les rôles ne sont pas clairs et les priorités changent chaque semaine, les meilleurs éléments se démotivent ou partent.",
+      },
+      {
+        title: "Votre croissance est plafonnée",
+        desc: "Vous avez le marché. Vous avez les clients. Mais l'opérationnel ne permet pas de scaler. Le chaos coûte de l'argent — chaque jour.",
+      },
+    ],
+  },
+  solution: {
+    badge: "La solution",
+    title: "Aumentia",
+    titleAccent: "Growth OS Sprint",
+    subtitle: "Un sprint d'exécution de 30 jours. Pas de conseil théorique — on construit votre système opérationnel de A à Z, avec vous, dans votre entreprise.",
+    pillars: [
+      {
+        icon: "🔍",
+        title: "Diagnostic du chaos",
+        desc: "On cartographie exactement où sont les blocages, les pertes de temps et les dépendances qui vous empêchent de passer à l'échelle.",
+      },
+      {
+        icon: "🏗️",
+        title: "Structuration opérationnelle",
+        desc: "Routines, KPIs, responsabilités claires. Les bases d'une entreprise qui tourne sans que tout remonte vers vous.",
+      },
+      {
+        icon: "⚡",
+        title: "IA & automatisation utile",
+        desc: "Pas de gadgets. Uniquement les automatisations qui éliminent les tâches répétitives et libèrent du temps dès la première semaine.",
+      },
+      {
+        icon: "🎯",
+        title: "Stabilisation + plan 90J",
+        desc: "Adoption par l'équipe, ajustements en temps réel, et un plan d'exécution concret pour les 90 jours suivants.",
+      },
+    ],
+  },
+  process: {
+    badge: "Le process",
+    title: "30 jours. 4 phases. Un système.",
+    subtitle: "Un sprint structuré — pas une mission de conseil qui traîne en longueur.",
+    weeks: [
+      {
+        num: "01",
+        label: "Semaine 1",
+        title: "Diagnostic du chaos",
+        items: [
+          "Cartographie complète de vos processus critiques",
+          "Identification des 3 goulots d'étranglement majeurs",
+          "Mesure de votre dépendance CEO",
+          "Priorisation des actions à fort impact",
+        ],
+      },
+      {
+        num: "02",
+        label: "Semaine 2",
+        title: "Structuration",
+        items: [
+          "Définition claire des rôles et responsabilités",
+          "Mise en place des KPIs clés par fonction",
+          "Design du rituel de pilotage hebdomadaire",
+          "Documentation des processus critiques",
+        ],
+      },
+      {
+        num: "03",
+        label: "Semaine 3",
+        title: "IA & automatisation",
+        items: [
+          "Sélection des automatisations à ROI immédiat",
+          "Déploiement des copilotes et workflows",
+          "Formation équipe sur les nouveaux outils",
+          "Intégration dans les processus existants",
+        ],
+      },
+      {
+        num: "04",
+        label: "Semaine 4",
+        title: "Stabilisation",
+        items: [
+          "Tests et ajustements du système complet",
+          "Adoption et validation par l'équipe",
+          "Revue des premiers résultats mesurables",
+          "Remise du plan d'exécution 90 jours",
+        ],
+      },
+    ],
   },
   offer: {
     badge: "L'offre",
     title: "Aumentia",
-    titleAccent: "Scale Sprint",
-    subtitle: "Un sprint opérationnel de 30 jours pour structurer vos opérations, libérer votre temps et poser les bases d'une croissance sans vous.",
+    titleAccent: "Growth OS Sprint",
+    subtitle: "Une seule offre. Un engagement clair. Un résultat mesurable.",
     price: "7 500 €",
     priceLabel: "HTVA · Paiement unique",
     duration: "30",
-    durationLabel: "jours pour transformer vos opérations",
+    durationLabel: "jours pour éliminer le chaos opérationnel",
     deliverables: [
-      { icon: "🔍", title: "Diagnostic opérationnel", desc: "Cartographie complète de vos processus. On identifie les 3 blocages critiques qui vous coûtent des heures chaque semaine." },
-      { icon: "⚙️", title: "Mise en place systèmes", desc: "Automatisations, templates, workflows — on construit les outils que votre équipe utilisera sans vous." },
-      { icon: "👥", title: "Sprint d'alignement équipe", desc: "Vos collaborateurs apprennent à décider sans vous. Rôles, responsabilités, protocoles d'escalade." },
-      { icon: "📊", title: "Dashboard de pilotage", desc: "Vous voyez l'état de vos opérations en temps réel. Fini les rapports Excel du lundi matin." },
-      { icon: "🤖", title: "IA opérationnelle", desc: "3 automatisations IA sur mesure intégrées à vos outils existants. ROI mesurable dès J+30." },
-      { icon: "🎯", title: "30 jours de support", desc: "Nous restons disponibles pendant le déploiement. Chaque blocage est résolu en moins de 24h." },
+      { icon: "🔍", title: "Diagnostic chaos complet", desc: "Analyse approfondie de vos opérations. Goulots d'étranglement et dépendances CEO identifiés et documentés." },
+      { icon: "📊", title: "Système de pilotage KPI", desc: "Dashboard opérationnel, KPIs clés, rituel de pilotage hebdomadaire en place et fonctionnel." },
+      { icon: "👥", title: "Structuration équipe", desc: "Rôles clairs, responsabilités définies, protocoles de décision sans passer par vous." },
+      { icon: "⚡", title: "3 automatisations", desc: "Sur vos processus les plus chronophages. ROI mesurable dès J+30." },
+      { icon: "📋", title: "Plan d'exécution 90J", desc: "Feuille de route opérationnelle complète pour les 3 mois après le sprint." },
+      { icon: "🎯", title: "30 jours de support", desc: "Accompagnement complet pendant le déploiement. Chaque blocage résolu en moins de 24h." },
     ],
     cta: "Réserver mon Sprint",
     guarantee: "Si après 30 jours vous n'avez pas libéré au moins 5h/semaine, on continue gratuitement.",
   },
-  results: {
-    badge: "Résultats",
-    title: "Ce que vous avez à J+30.",
+  proof: {
+    badge: "Pourquoi Aumentia",
+    title: "Une approche terrain. Pas du conseil théorique.",
     items: [
-      { value: "30j", label: "pour transformer vos opérations" },
-      { value: "+10h", label: "libérées par semaine pour le CEO" },
-      { value: "3", label: "automatisations IA opérationnelles" },
-      { value: "-80%", label: "de décisions qui passent par vous" },
-      { value: "1", label: "dashboard temps réel pour piloter" },
-      { value: "0", label: "processus critique non documenté" },
+      {
+        icon: "📐",
+        title: "Méthode Scaling Up",
+        desc: "Formé directement sur la méthode Verne Harnish — le playbook des PME qui passent de 1M à 100M de CA.",
+      },
+      {
+        icon: "🏭",
+        title: "Expérience opérationnelle PME",
+        desc: "On a vécu les mêmes blocages que vous. On ne diagnostique pas depuis l'extérieur — on connaît de l'intérieur.",
+      },
+      {
+        icon: "⚙️",
+        title: "Systèmes, pas recommandations",
+        desc: "On ne livre pas un rapport PowerPoint. On construit les systèmes et on s'assure qu'ils tournent dans votre réalité.",
+      },
+      {
+        icon: "📏",
+        title: "Résultats mesurables",
+        desc: "Heures libérées, décisions autonomisées, KPIs actifs. Tout se mesure — avant et après le sprint.",
+      },
     ],
-    promise: "Un CEO libéré. Des opérations qui tournent. Une équipe autonome.",
   },
   social: {
     badge: "Ils ont fait le Sprint",
@@ -69,25 +182,25 @@ const fr: Translations = {
       {
         quote: "En 4 semaines, j'ai récupéré mes matinées. Mon équipe prend maintenant 80% des décisions sans moi. Je n'aurais pas cru ça possible.",
         name: "Thomas R.",
-        role: "CEO · Agence digitale · 18 collaborateurs",
+        role: "CEO · Agence · 18 collaborateurs",
       },
       {
-        quote: "Le diagnostic initial m'a ouvert les yeux. On perdait 15h par semaine sur des tâches qui auraient pu être automatisées depuis des mois.",
+        quote: "Le diagnostic initial m'a ouvert les yeux. On perdait 15h par semaine sur des tâches qui auraient pu être réglées depuis des mois.",
         name: "Sophie M.",
         role: "Directrice · Cabinet de conseil · Lyon",
       },
       {
         quote: "J'ai enfin pu partir une semaine sans téléphone. L'entreprise a tourné. C'est con, mais c'est la première fois en 8 ans.",
         name: "Marco D.",
-        role: "Fondateur · PME industrielle · 35 personnes",
+        role: "Fondateur · PME · 35 personnes",
       },
     ],
   },
   diagnostic: {
-    badge: "Diagnostic IA gratuit",
+    badge: "Diagnostic gratuit",
     title: "Pas encore prêt pour le Sprint ?",
     titleAccent: "Commencez par le diagnostic.",
-    subtitle: "Demandez votre diagnostic IA personnalisé. On analyse votre situation et on revient vers vous avec un plan clair — sans engagement.",
+    subtitle: "Renseignez vos coordonnées. Alexandre analyse votre situation et revient vers vous avec un plan clair — sans engagement.",
     form: {
       name: "Votre nom",
       email: "Votre email professionnel",
@@ -109,9 +222,9 @@ const fr: Translations = {
     },
   },
   finalcta: {
-    title: "Prêt à quitter le terrain opérationnel ?",
-    subtitle: "30 minutes pour voir si le Scale Sprint est fait pour vous. Gratuit, sans engagement.",
-    cta: "Réserver un appel découverte",
+    title: "Votre entreprise mérite un système qui tourne sans vous.",
+    subtitle: "30 minutes pour diagnostiquer votre chaos opérationnel. Gratuit, sans engagement.",
+    cta: "Réserver mon diagnostic gratuit",
   },
   values: {
     badge: "Nos valeurs",
@@ -144,12 +257,12 @@ const fr: Translations = {
     badge: "Le fondateur",
     name: "Alexandre Gagliano",
     role: "CEO & Fondateur, Aumentia",
-    bhag: "BHAG : Aider 1 million de personnes grâce à l'IA d'ici 2040.",
-    purpose: "Aumentia existe pour combler le fossé entre l'IA et le ROI réel. On aide les gens à utiliser l'IA avec de vrais résultats — pas juste des démos impressionnantes.",
-    cta: "Réserver un appel avec Alexandre",
+    bhag: "BHAG : Aider 1 million de dirigeants à piloter leur croissance avec clarté d'ici 2040.",
+    purpose: "Aumentia existe pour combler le fossé entre l'ambition de croissance et la réalité opérationnelle. On aide les dirigeants de PME à construire des systèmes — pas à courir après les problèmes.",
+    cta: "Parler avec Alexandre",
   },
   footer: {
-    tagline: "L'entreprise augmentée.",
+    tagline: "Système d'exécution pour PME.",
     links: {
       title1: "Solutions",
       audit: "Audit IA",
@@ -159,7 +272,6 @@ const fr: Translations = {
     rights: "Tous droits réservés.",
   },
 
-  // Page Audit
   auditPage: {
     badge: "Offre Audit",
     title: "Votre roadmap IA,",
@@ -213,7 +325,6 @@ const fr: Translations = {
     },
   },
 
-  // Page Coaching
   coachingPage: {
     badge: "Coaching IA",
     title: "Vos coachs IA,",
@@ -272,12 +383,11 @@ const fr: Translations = {
     },
   },
 
-  // Page Contact
   contactPage: {
     badge: "Contact",
     title: "Parlons de votre",
-    title2: "projet IA.",
-    subtitle: "30 minutes suffisent pour identifier vos opportunités prioritaires.",
+    title2: "situation.",
+    subtitle: "30 minutes suffisent pour diagnostiquer votre chaos opérationnel et voir si le Sprint est fait pour vous.",
     form: {
       name: "Votre prénom",
       email: "Votre email professionnel",
@@ -285,10 +395,10 @@ const fr: Translations = {
       message: "Décrivez votre situation (optionnel)",
       submit: "Envoyer le message",
       sending: "Envoi...",
-      success: "Message envoyé ! On revient vers vous sous 24h.",
+      success: "Message envoyé ! Alexandre revient vers vous sous 24h.",
     },
     info: {
-      demo: { title: "Réserver une démo", desc: "30 min pour identifier vos opportunités IA. Gratuit." },
+      demo: { title: "Réserver un diagnostic", desc: "30 min pour diagnostiquer votre chaos. Gratuit." },
       email: { title: "Email direct", value: "alex@aumentia.ai" },
       phone: { title: "Téléphone", value: "+32 471 662 563" },
     },

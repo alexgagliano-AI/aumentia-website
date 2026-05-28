@@ -1,24 +1,46 @@
 export interface Translations {
   nav: {
     home: string;
+    process: string;
     offer: string;
-    results: string;
     contact: string;
     cta: string;
   };
   hero: {
     badge: string;
     h1: string;
-    h1accent: string;
     subtitle: string;
     cta1: string;
     cta2: string;
   };
-  pain: {
+  problem: {
     badge: string;
     title: string;
     items: string[];
     conclusion: string;
+  };
+  consequences: {
+    badge: string;
+    title: string;
+    items: { title: string; desc: string }[];
+  };
+  solution: {
+    badge: string;
+    title: string;
+    titleAccent: string;
+    subtitle: string;
+    pillars: { icon: string; title: string; desc: string }[];
+  };
+  process: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    weeks: {
+      num: string;
+      label: string;
+      title: string;
+      items: string[];
+    }[];
   };
   offer: {
     badge: string;
@@ -33,11 +55,10 @@ export interface Translations {
     cta: string;
     guarantee: string;
   };
-  results: {
+  proof: {
     badge: string;
     title: string;
-    items: { value: string; label: string }[];
-    promise: string;
+    items: { icon: string; title: string; desc: string }[];
   };
   social: {
     badge: string;
