@@ -114,13 +114,30 @@ export interface Translations {
     title: string;
     title2: string;
     subtitle: string;
-    steps: {
+    cta_hero: string;
+    chaos_badge: string;
+    chaos_title: string;
+    chaos_subtitle: string;
+    chaos_items: string[];
+    chaos_conclusion: string;
+    method_badge: string;
+    method_title: string;
+    method_subtitle: string;
+    phases: {
       num: string;
+      label: string;
       title: string;
       duration: string;
       desc: string;
       deliverables: string[];
     }[];
+    why_badge: string;
+    why_title: string;
+    why_subtitle: string;
+    why_items: { icon: string; title: string; desc: string }[];
+    faq_badge: string;
+    faq_title: string;
+    faq_items: { q: string; a: string }[];
     cta: { title: string; subtitle: string; btn: string };
   };
   coachingPage: {

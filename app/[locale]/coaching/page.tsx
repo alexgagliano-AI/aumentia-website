@@ -151,6 +151,50 @@ export default async function CoachingPage({ params }: { params: Promise<{ local
           </div>
         </div>
       </section>
+
+      {/* ─── BRIDGE → GROWTH OS SPRINT ─── */}
+      <section className="section-sm" style={{ background: "var(--dark-card)" }}>
+        <div className="container">
+          <div style={{
+            display: "grid", gridTemplateColumns: "1fr auto", gap: 32, alignItems: "center",
+            padding: "40px 48px", background: "var(--dark)", borderRadius: 16,
+            border: "1px solid var(--dark-border)",
+          }}>
+            <div>
+              <p style={{ fontSize: 12, fontWeight: 700, color: "var(--gold)", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 10 }}>
+                {locale === "fr" ? "Le coaching ne suffit pas ?" :
+                 locale === "en" ? "Is coaching not enough?" :
+                 "Il coaching non basta?"}
+              </p>
+              <h3 style={{ fontSize: "clamp(18px, 2.5vw, 26px)", fontWeight: 800, letterSpacing: "-0.02em", marginBottom: 10 }}>
+                {locale === "fr" ? "Votre chaos opérationnel ralentit votre croissance." :
+                 locale === "en" ? "Operational chaos is slowing your growth." :
+                 "Il caos operativo frena la vostra crescita."}
+              </h3>
+              <p style={{ color: "var(--gray-light)", fontSize: 15, lineHeight: 1.6, margin: 0 }}>
+                {locale === "fr" ? "Le Growth OS Sprint élimine le chaos en 30 jours — diagnostic, structuration, IA utile, plan 90 jours. Sans vous, l'entreprise ne peut pas scaler." :
+                 locale === "en" ? "The Growth OS Sprint eliminates chaos in 30 days — diagnosis, structuring, useful AI, 90-day plan. Without a system, your business can't scale." :
+                 "Il Growth OS Sprint elimina il caos in 30 giorni — diagnosi, strutturazione, IA utile, piano 90 giorni. Senza sistema, la vostra azienda non può scalare."}
+              </p>
+            </div>
+            <a
+              href={`/${locale}/audit`}
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 8,
+                padding: "14px 28px", borderRadius: 10, flexShrink: 0,
+                background: "var(--gold)", color: "var(--dark)",
+                fontWeight: 700, fontSize: 15, textDecoration: "none",
+                transition: "opacity 0.2s",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {locale === "fr" ? "Voir le Sprint →" :
+               locale === "en" ? "See the Sprint →" :
+               "Vedere lo Sprint →"}
+            </a>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
