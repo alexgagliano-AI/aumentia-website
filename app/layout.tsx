@@ -109,6 +109,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr">
       <head>
+        <meta name="msvalidate.01" content="4ADFD0248E4299D10FEA4FE0CB5C5BDB" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
