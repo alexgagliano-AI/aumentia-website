@@ -2,12 +2,44 @@ import { getTranslations } from "@/lib/i18n";
 import Image from "next/image";
 import DiagnosticRequest from "@/components/DiagnosticRequest";
 
+function buildJsonLd(locale: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `https://aumentia.ai/${locale}`,
+    url: `https://aumentia.ai/${locale}`,
+    name: locale === "fr"
+      ? "Aumentia — Conseil IA pour PME. ROI réel."
+      : locale === "en"
+      ? "Aumentia — AI Consulting for SMEs. Real ROI."
+      : "Aumentia — Consulenza IA per PMI. ROI Reale.",
+    description: locale === "fr"
+      ? "Audit IA, coaching IA et automatisation pour PME. +20% d'efficacité en 90 jours. Alexandre Gagliano, Bruxelles."
+      : locale === "en"
+      ? "AI audit, coaching and automation for SMEs. +20% efficiency in 90 days. Alexandre Gagliano, Brussels."
+      : "Audit IA, coaching IA e automazione per PMI. +20% efficienza in 90 giorni. Alexandre Gagliano, Bruxelles.",
+    inLanguage: locale,
+    isPartOf: { "@id": "https://aumentia.ai/#organization" },
+    breadcrumb: {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Aumentia", item: "https://aumentia.ai" },
+        { "@type": "ListItem", position: 2, name: locale.toUpperCase(), item: `https://aumentia.ai/${locale}` },
+      ],
+    },
+  };
+}
+
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = getTranslations(locale);
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildJsonLd(locale)) }}
+      />
       {/* ─── HERO ─────────────────────────────────────────────────────────── */}
       <section style={{
         minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center",
