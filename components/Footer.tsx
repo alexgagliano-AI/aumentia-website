@@ -5,7 +5,7 @@ interface FooterProps {
   locale: string;
   t: {
     tagline: string;
-    links: { title1: string; audit: string; coaching: string; title2: string };
+    links: { title1: string; audit: string; coaching: string; investors: string; title2: string };
     rights: string;
   };
 }
@@ -36,6 +36,7 @@ export default function Footer({ locale, t }: FooterProps) {
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               <Link href={`/${locale}/audit`} style={{ color: "var(--gray-light)", fontSize: 14, textDecoration: "none" }}>{t.links.audit}</Link>
               <Link href={`/${locale}/coaching`} style={{ color: "var(--gray-light)", fontSize: 14, textDecoration: "none" }}>{t.links.coaching}</Link>
+              <Link href={`/${locale}/investors`} style={{ color: "var(--gray-light)", fontSize: 14, textDecoration: "none" }}>{t.links.investors}</Link>
             </div>
           </div>
 

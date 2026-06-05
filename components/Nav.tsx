@@ -12,6 +12,7 @@ interface NavProps {
     home: string;
     process: string;
     offer: string;
+    coaching: string;
     contact: string;
     cta: string;
   };
@@ -39,6 +40,7 @@ export default function Nav({ locale, t }: NavProps) {
     { href: `/${locale}`, label: t.home },
     { href: `/${locale}#process`, label: t.process },
     { href: `/${locale}#offer`, label: t.offer },
+    { href: `/${locale}/coaching`, label: t.coaching },
     { href: `/${locale}/contact`, label: t.contact },
   ];
 

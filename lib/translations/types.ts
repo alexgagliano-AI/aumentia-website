@@ -3,6 +3,7 @@ export interface Translations {
     home: string;
     process: string;
     offer: string;
+    coaching: string;
     contact: string;
     cta: string;
   };
@@ -106,8 +107,47 @@ export interface Translations {
   };
   footer: {
     tagline: string;
-    links: { title1: string; audit: string; coaching: string; title2: string };
+    links: { title1: string; audit: string; coaching: string; investors: string; title2: string };
     rights: string;
+  };
+  investorPage: {
+    meta: { title: string; description: string };
+    hero: {
+      badge: string; h1: string; h1accent: string; subtitle: string;
+      cta_primary: string; cta_secondary: string;
+    };
+    metrics: { value: string; label: string; sub: string }[];
+    why: {
+      badge: string; title: string;
+      problem_title: string; problem_items: string[];
+      advantage_title: string; advantage_items: string[];
+    };
+    model: {
+      badge: string; title: string;
+      steps: { num: string; name: string; price: string; label: string }[];
+    };
+    projections: {
+      badge: string; title: string; subtitle: string;
+      col_year: string; col_revenue: string; col_hypothesis: string;
+      rows: { year: string; revenue: string; hypothesis: string }[];
+      note: string;
+    };
+    funds: {
+      badge: string; title: string;
+      items: { pct: string; title: string; desc: string }[];
+    };
+    team: {
+      badge: string; title: string;
+      members: { name: string; role: string; bio: string }[];
+    };
+    cta: { title: string; subtitle: string; btn: string; contact: string };
+    modal: {
+      title: string; subtitle: string;
+      firstname: string; lastname: string; email: string;
+      company: string; ticket: string; ticket_options: string[];
+      message: string; message_placeholder: string;
+      submit: string; sending: string; success: string; success_sub: string;
+    };
   };
   auditPage: {
     badge: string;
