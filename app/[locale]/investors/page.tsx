@@ -79,7 +79,6 @@ export default async function InvestorsPage({
               label={p.hero.cta_primary}
               t={p.modal}
               className="btn-primary"
-              // @ts-expect-error style passthrough
               style={{ fontSize: 16, padding: "14px 32px" }}
             />
             <a
@@ -428,7 +427,6 @@ export default async function InvestorsPage({
                 label={p.cta.btn}
                 t={p.modal}
                 className="btn-primary"
-                // @ts-expect-error style passthrough
                 style={{ fontSize: 16, padding: "16px 36px" }}
               />
               <p style={{ fontSize: 14, color: "var(--gray)", margin: 0 }}>{p.cta.contact}</p>

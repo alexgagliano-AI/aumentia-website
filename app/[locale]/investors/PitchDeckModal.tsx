@@ -19,15 +19,16 @@ type ModalTranslations = {
   success_sub: string;
 };
 
-export function PitchDeckButton({ label, t, className }: {
+export function PitchDeckButton({ label, t, className, style }: {
   label: string;
   t: ModalTranslations;
   className?: string;
+  style?: React.CSSProperties;
 }) {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <button onClick={() => setOpen(true)} className={className}>
+      <button onClick={() => setOpen(true)} className={className} style={style}>
         {label}
       </button>
       {open && <PitchDeckModal t={t} onClose={() => setOpen(false)} />}
