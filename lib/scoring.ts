@@ -111,3 +111,35 @@ export function getMaturityLevel(score: number): {
   if (score >= 35) return { level: "En développement", color: "#F59E0B", description: "Un potentiel IA significatif encore inexploité." };
   return { level: "Initial", color: "#EF4444", description: "L'IA peut transformer votre organisation en profondeur." };
 }
+
+// ─── i18n variants for PDF export ────────────────────────────────────────────
+export const PILLAR_LABELS_I18N: Record<string, Record<Pillar, string>> = {
+  fr: { leadership: "Leadership & Vision", strategy: "Stratégie", execution: "Exécution", sales: "Vente & Marketing", hr: "RH & Talents", finance: "Finance & Data" },
+  en: { leadership: "Leadership & Vision", strategy: "Strategy", execution: "Execution", sales: "Sales & Marketing", hr: "HR & Talent", finance: "Finance & Data" },
+  it: { leadership: "Leadership & Visione", strategy: "Strategia", execution: "Esecuzione", sales: "Vendite & Marketing", hr: "HR & Talenti", finance: "Finanza & Dati" },
+};
+
+export function getMaturityLevelI18n(score: number, lang = "fr"): { level: string; color: string; description: string } {
+  const sets: Record<string, { min: number; level: string; color: string; description: string }[]> = {
+    fr: [
+      { min: 75, level: "Avancé", color: "#00D4C8", description: "Vous êtes prêt pour une transformation IA ambitieuse." },
+      { min: 55, level: "Intermédiaire", color: "#C8922A", description: "De bonnes bases — des opportunités rapides à saisir." },
+      { min: 35, level: "En développement", color: "#F59E0B", description: "Un potentiel IA significatif encore inexploité." },
+      { min: 0, level: "Initial", color: "#EF4444", description: "L'IA peut transformer votre organisation en profondeur." },
+    ],
+    en: [
+      { min: 75, level: "Advanced", color: "#00D4C8", description: "You are ready for an ambitious AI transformation." },
+      { min: 55, level: "Intermediate", color: "#C8922A", description: "Good foundations — quick opportunities to seize." },
+      { min: 35, level: "Developing", color: "#F59E0B", description: "Significant untapped AI potential." },
+      { min: 0, level: "Initial", color: "#EF4444", description: "AI can deeply transform your organization." },
+    ],
+    it: [
+      { min: 75, level: "Avanzato", color: "#00D4C8", description: "Siete pronti per una trasformazione IA ambiziosa." },
+      { min: 55, level: "Intermedio", color: "#C8922A", description: "Buone basi — opportunità rapide da cogliere." },
+      { min: 35, level: "In sviluppo", color: "#F59E0B", description: "Un potenziale IA significativo ancora inesplorato." },
+      { min: 0, level: "Iniziale", color: "#EF4444", description: "L'IA può trasformare profondamente la vostra organizzazione." },
+    ],
+  };
+  const set = sets[lang] ?? sets.fr;
+  return set.find(l => score >= l.min) ?? set[set.length - 1];
+}

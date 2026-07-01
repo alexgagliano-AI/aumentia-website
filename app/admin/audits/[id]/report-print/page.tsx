@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { redirect, notFound } from "next/navigation";
-import { calculateScores, getMaturityLevel, BENCHMARKS, PILLAR_LABELS } from "@/lib/scoring";
+import { calculateScores, getMaturityLevelI18n, BENCHMARKS, PILLAR_LABELS_I18N } from "@/lib/scoring";
 import type { Pillar } from "@/lib/scoring";
 import PrintButton from "@/components/PrintButton";
 import type { ReactNode } from "react";
@@ -181,11 +181,141 @@ export default async function ReportPrintPage({ params }: { params: Promise<{ id
     .select("status")
     .eq("audit_id", id);
 
+  const lang = ((audit as { language?: string }).language ?? "fr") as string;
+  const PILLAR_LABELS = PILLAR_LABELS_I18N[lang] ?? PILLAR_LABELS_I18N.fr;
   const scores = calculateScores(allResponses ?? []);
-  const maturity = getMaturityLevel(scores.overall);
+  const maturity = getMaturityLevelI18n(scores.overall, lang);
   const completedCount = allRespondents?.filter((r) => r.status === "completed").length ?? 0;
   const totalCount = allRespondents?.length ?? 0;
-  const today = new Date().toLocaleDateString("fr-BE", { day: "numeric", month: "long", year: "numeric" });
+  const dateLocale = lang === "en" ? "en-GB" : lang === "it" ? "it-IT" : "fr-BE";
+  const today = new Date().toLocaleDateString(dateLocale, { day: "numeric", month: "long", year: "numeric" });
+
+  const T = {
+    fr: {
+      confidential: "CONFIDENTIEL",
+      coverTitle: "DIAGNOSTIC IA STRATÉGIQUE",
+      scoreLabel: "Score de Maturité IA",
+      generatedOn: "Rapport généré le",
+      participation: "Participation",
+      respondents: "répondants",
+      preparedBy: "Préparé par",
+      ceoSectionTitle: "MOT DU CEO",
+      ceoCity: "Bruxelles",
+      ceoSalutation: "Madame, Monsieur,",
+      ceoPara1: "Vous avez accepté de partager avec nous le fonctionnement interne de votre entreprise. C'est un geste de confiance que nous prenons très au sérieux, et que nous honorons en vous remettant ce rapport avec toute la rigueur et la précision qu'il mérite.",
+      ceoPara2: "Ce diagnostic n'est pas un rapport générique. Il est construit à partir des verbatims réels de vos équipes, analysés par notre intelligence artificielle formée aux méthodologies Aumentia et aux meilleures pratiques en transformation IA des PME européennes. Chaque recommandation est ancrée dans votre réalité opérationnelle.",
+      ceoPara3: "L'IA ne transforme pas les entreprises. Ce sont les dirigeants qui le font — avec les bons outils, la bonne vision et le bon accompagnement. Ce rapport est conçu pour vous donner ces trois éléments : une vision claire de votre maturité IA actuelle, une carte précise des opportunités à saisir, et un plan d'action concret pour les 12 prochains mois.",
+      ceoPara4: "Ce rapport est votre point de départ. La suite, c'est ensemble que nous l'écrirons.",
+      ceoClosing: "Bonne lecture,",
+      overviewLabel: "VUE D'ENSEMBLE",
+      dashboardTitle: "Tableau de Bord des Scores",
+      globalScore: "Score Global",
+      aiScore: "Score IA",
+      aiReadiness: "Préparation IA",
+      participationLabel: "Participation",
+      respondentsCompleted: "répondants ont complété",
+      statusStrong: "Force",
+      statusImprove: "A renforcer",
+      statusCritical: "Priorité critique",
+      benchmarkLabel: "Moy. belge",
+      maturityGridTitle: "Grille de Maturité IA — Aumentia",
+      maturityLevels: [
+        { range: "0–40", label: "Précurseur", desc: "Transformation urgente nécessaire" },
+        { range: "41–60", label: "Émergent", desc: "Bases à consolider rapidement" },
+        { range: "61–75", label: "En Marche", desc: "Accélération et déploiement possible" },
+        { range: "76–100", label: "Avancé", desc: "Leadership IA sectoriel" },
+      ],
+      benchmarkNote: "▎ Marqueur vertical = benchmark moyen des PME belges (source: Aumentia Research 2025)",
+      footerTitle: "Diagnostic IA Stratégique",
+      footerConfidential: "Confidentiel",
+      backButton: "← Retour",
+      pdfHint: "Dans la fenêtre d'impression → décochez \"En-têtes et pieds de page\"",
+      pdfLabel: "Rapport PDF",
+    },
+    en: {
+      confidential: "CONFIDENTIAL",
+      coverTitle: "STRATEGIC AI DIAGNOSTIC",
+      scoreLabel: "AI Maturity Score",
+      generatedOn: "Report generated on",
+      participation: "Participation",
+      respondents: "respondents",
+      preparedBy: "Prepared by",
+      ceoSectionTitle: "CEO MESSAGE",
+      ceoCity: "Brussels",
+      ceoSalutation: "Dear Sir or Madam,",
+      ceoPara1: "You have chosen to share with us the inner workings of your organization. This is a gesture of trust that we take very seriously, and that we honor by delivering this report with all the rigor and precision it deserves.",
+      ceoPara2: "This diagnostic is not a generic report. It is built from the real verbatims of your teams, analyzed by our artificial intelligence trained on Aumentia methodologies and the best practices in AI transformation for European SMEs. Every recommendation is grounded in your operational reality.",
+      ceoPara3: "AI does not transform companies. Leaders do — with the right tools, the right vision, and the right support. This report is designed to give you all three: a clear view of your current AI maturity, a precise map of the opportunities to seize, and a concrete action plan for the next 12 months.",
+      ceoPara4: "This report is your starting point. What comes next, we will write together.",
+      ceoClosing: "Yours sincerely,",
+      overviewLabel: "OVERVIEW",
+      dashboardTitle: "Score Dashboard",
+      globalScore: "Global Score",
+      aiScore: "AI Score",
+      aiReadiness: "AI Readiness",
+      participationLabel: "Participation",
+      respondentsCompleted: "respondents completed",
+      statusStrong: "Strength",
+      statusImprove: "To improve",
+      statusCritical: "Critical priority",
+      benchmarkLabel: "EU avg.",
+      maturityGridTitle: "AI Maturity Grid — Aumentia",
+      maturityLevels: [
+        { range: "0–40", label: "Beginner", desc: "Urgent transformation required" },
+        { range: "41–60", label: "Emerging", desc: "Foundations to consolidate quickly" },
+        { range: "61–75", label: "Progressing", desc: "Acceleration and deployment possible" },
+        { range: "76–100", label: "Advanced", desc: "Sector AI leadership" },
+      ],
+      benchmarkNote: "▎ Vertical marker = average benchmark for European SMEs (source: Aumentia Research 2025)",
+      footerTitle: "Strategic AI Diagnostic",
+      footerConfidential: "Confidential",
+      backButton: "← Back",
+      pdfHint: "In the print dialog → uncheck \"Headers and footers\"",
+      pdfLabel: "PDF Report",
+    },
+    it: {
+      confidential: "RISERVATO",
+      coverTitle: "DIAGNOSTICO IA STRATEGICO",
+      scoreLabel: "Punteggio Maturità IA",
+      generatedOn: "Report generato il",
+      participation: "Partecipazione",
+      respondents: "rispondenti",
+      preparedBy: "Preparato da",
+      ceoSectionTitle: "MESSAGGIO DEL CEO",
+      ceoCity: "Bruxelles",
+      ceoSalutation: "Gentili Signore e Signori,",
+      ceoPara1: "Avete scelto di condividere con noi il funzionamento interno della vostra organizzazione. È un gesto di fiducia che prendiamo molto sul serio e che onoriamo consegnandovi questo rapporto con tutto il rigore e la precisione che merita.",
+      ceoPara2: "Questa diagnosi non è un rapporto generico. È costruita a partire dai verbatim reali dei vostri team, analizzati dalla nostra intelligenza artificiale formata sulle metodologie Aumentia e sulle migliori pratiche nella trasformazione IA delle PMI europee. Ogni raccomandazione è radicata nella vostra realtà operativa.",
+      ceoPara3: "L'IA non trasforma le aziende. Lo fanno i leader — con gli strumenti giusti, la visione giusta e il giusto supporto. Questo rapporto è progettato per darvi tutti e tre: una visione chiara della vostra maturità IA attuale, una mappa precisa delle opportunità da cogliere e un piano d'azione concreto per i prossimi 12 mesi.",
+      ceoPara4: "Questo rapporto è il vostro punto di partenza. Il seguito, lo scriveremo insieme.",
+      ceoClosing: "Cordiali saluti,",
+      overviewLabel: "PANORAMICA",
+      dashboardTitle: "Dashboard dei Punteggi",
+      globalScore: "Punteggio Globale",
+      aiScore: "Punteggio IA",
+      aiReadiness: "Readiness IA",
+      participationLabel: "Partecipazione",
+      respondentsCompleted: "rispondenti hanno completato",
+      statusStrong: "Punto di forza",
+      statusImprove: "Da migliorare",
+      statusCritical: "Priorità critica",
+      benchmarkLabel: "Media EU",
+      maturityGridTitle: "Griglia di Maturità IA — Aumentia",
+      maturityLevels: [
+        { range: "0–40", label: "Principiante", desc: "Trasformazione urgente necessaria" },
+        { range: "41–60", label: "Emergente", desc: "Basi da consolidare rapidamente" },
+        { range: "61–75", label: "In Progresso", desc: "Accelerazione e deployment possibile" },
+        { range: "76–100", label: "Avanzato", desc: "Leadership IA settoriale" },
+      ],
+      benchmarkNote: "▎ Marcatore verticale = benchmark medio PMI europee (fonte: Aumentia Research 2025)",
+      footerTitle: "Diagnostico IA Strategico",
+      footerConfidential: "Riservato",
+      backButton: "← Indietro",
+      pdfHint: "Nella finestra di stampa → deseleziona \"Intestazioni e piè di pagina\"",
+      pdfLabel: "Report PDF",
+    },
+  } as const;
+  const t = T[lang as keyof typeof T] ?? T.fr;
 
   const CYAN = "#00d4c8";
   const DARK = "#0a0f1e";
@@ -232,11 +362,11 @@ export default async function ReportPrintPage({ params }: { params: Promise<{ id
         <a href={`/admin/audits/${id}`} style={{
           padding: "9px 16px", background: "rgba(255,255,255,0.08)",
           color: "#fff", borderRadius: 8, fontSize: 13, textDecoration: "none", fontWeight: 500,
-        }}>← Retour</a>
+        }}>{t.backButton}</a>
         <div style={{ flex: 1, textAlign: "center", color: "#8892b0", fontSize: 13 }}>
-          Rapport PDF — {company?.name}
+          {t.pdfLabel} — {company?.name}
           <span style={{ marginLeft: 12, fontSize: 11, color: "#556", background: "rgba(255,255,255,0.05)", padding: "2px 8px", borderRadius: 4 }}>
-            Dans la fenêtre d&apos;impression → décochez &quot;En-têtes et pieds de page&quot;
+            {t.pdfHint}
           </span>
         </div>
         <PrintButton />
@@ -270,14 +400,14 @@ export default async function ReportPrintPage({ params }: { params: Promise<{ id
             borderRadius: 100, fontSize: 10, fontWeight: 700,
             letterSpacing: "0.18em", color: "#8892b0", textTransform: "uppercase",
           }}>
-            CONFIDENTIEL
+            {t.confidential}
           </div>
         </div>
 
         {/* Titre central */}
         <div style={{ textAlign: "center", padding: "40px 0" }}>
           <div style={{ fontSize: 10, fontWeight: 800, color: CYAN, letterSpacing: "0.25em", textTransform: "uppercase", marginBottom: 28 }}>
-            DIAGNOSTIC IA STRATÉGIQUE
+            {t.coverTitle}
           </div>
           <div style={{
             fontSize: 54, fontWeight: 900, letterSpacing: "-0.03em", lineHeight: 1.02,
@@ -287,7 +417,7 @@ export default async function ReportPrintPage({ params }: { params: Promise<{ id
           </div>
           <div style={{ width: 64, height: 3, background: CYAN, margin: "0 auto 20px" }} />
           <div style={{ color: "#8892b0", fontSize: 14, lineHeight: 1.6 }}>
-            {[company?.industry, company?.size && `${company.size} employés`, company?.country ?? "Belgique"].filter(Boolean).join(" · ")}
+            {[company?.industry, company?.size, company?.country ?? "Belgium"].filter(Boolean).join(" · ")}
           </div>
         </div>
 
@@ -300,7 +430,7 @@ export default async function ReportPrintPage({ params }: { params: Promise<{ id
             background: "rgba(0,212,200,0.04)",
           }}>
             <div style={{ fontSize: 10, fontWeight: 700, color: "#8892b0", letterSpacing: "0.15em", textTransform: "uppercase" }}>
-              Score de Maturité IA
+              {t.scoreLabel}
             </div>
             <div style={{ fontSize: 72, fontWeight: 900, color: CYAN, letterSpacing: "-0.04em", lineHeight: 1 }}>
               {scores.overall}
@@ -323,15 +453,15 @@ export default async function ReportPrintPage({ params }: { params: Promise<{ id
           paddingTop: 28, borderTop: "1px solid rgba(255,255,255,0.08)",
         }}>
           <div>
-            <div style={{ fontSize: 11, color: "#8892b0", marginBottom: 3 }}>Rapport généré le</div>
+            <div style={{ fontSize: 11, color: "#8892b0", marginBottom: 3 }}>{t.generatedOn}</div>
             <div style={{ fontSize: 13, fontWeight: 600 }}>{today}</div>
           </div>
           <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: 11, color: "#8892b0", marginBottom: 3 }}>Participation</div>
-            <div style={{ fontSize: 13, fontWeight: 600 }}>{completedCount}/{totalCount} répondants</div>
+            <div style={{ fontSize: 11, color: "#8892b0", marginBottom: 3 }}>{t.participation}</div>
+            <div style={{ fontSize: 13, fontWeight: 600 }}>{completedCount}/{totalCount} {t.respondents}</div>
           </div>
           <div style={{ textAlign: "right" }}>
-            <div style={{ fontSize: 11, color: "#8892b0", marginBottom: 3 }}>Préparé par</div>
+            <div style={{ fontSize: 11, color: "#8892b0", marginBottom: 3 }}>{t.preparedBy}</div>
             <div style={{ fontSize: 13, fontWeight: 600 }}>Alexandre Gagliano</div>
             <div style={{ fontSize: 12, color: CYAN }}>Founder & CEO, Aumentia</div>
           </div>
@@ -346,36 +476,28 @@ export default async function ReportPrintPage({ params }: { params: Promise<{ id
         <div style={{ height: 5, background: `linear-gradient(90deg, ${CYAN}, ${DARK})` }} />
         <div style={{ padding: "44px 64px 0" }}>
           <div style={{ fontSize: 10, fontWeight: 800, color: CYAN, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 36 }}>
-            MOT DU CEO
+            {t.ceoSectionTitle}
           </div>
 
           <div style={{ fontSize: 12, color: "#888", marginBottom: 32, lineHeight: 1.6 }}>
-            Bruxelles, le {today}
+            {t.ceoCity}, {today}
           </div>
 
-          <p style={{ fontSize: 15, lineHeight: 1.9, color: "#1a1a2e", marginBottom: 24 }}>Madame, Monsieur,</p>
+          <p style={{ fontSize: 15, lineHeight: 1.9, color: "#1a1a2e", marginBottom: 24 }}>{t.ceoSalutation}</p>
 
           <p style={{ fontSize: 15, lineHeight: 1.9, color: "#333", marginBottom: 20 }}>
-            Vous avez accepté de partager avec nous le fonctionnement interne de votre entreprise.
-            C&apos;est un geste de confiance que nous prenons très au sérieux, et que nous honorons
-            en vous remettant ce rapport avec toute la rigueur et la précision qu&apos;il mérite.
+            {t.ceoPara1}
           </p>
           <p style={{ fontSize: 15, lineHeight: 1.9, color: "#333", marginBottom: 20 }}>
-            Ce diagnostic n&apos;est pas un rapport générique. Il est construit à partir des verbatims
-            réels de vos équipes, analysés par notre intelligence artificielle formée aux méthodologies
-            Aumentia et aux meilleures pratiques en transformation IA des PME européennes.
-            Chaque recommandation est ancrée dans votre réalité opérationnelle.
+            {t.ceoPara2}
           </p>
           <p style={{ fontSize: 15, lineHeight: 1.9, color: "#333", marginBottom: 20 }}>
-            L&apos;IA ne transforme pas les entreprises. Ce sont les dirigeants qui le font — avec
-            les bons outils, la bonne vision et le bon accompagnement. Ce rapport est conçu pour vous
-            donner ces trois éléments : une vision claire de votre maturité IA actuelle, une carte
-            précise des opportunités à saisir, et un plan d&apos;action concret pour les 12 prochains mois.
+            {t.ceoPara3}
           </p>
           <p style={{ fontSize: 15, lineHeight: 1.9, color: "#333", marginBottom: 40 }}>
-            Ce rapport est votre point de départ. La suite, c&apos;est ensemble que nous l&apos;écrirons.
+            {t.ceoPara4}
           </p>
-          <p style={{ fontSize: 15, lineHeight: 1.9, color: "#1a1a2e", marginBottom: 36 }}>Bonne lecture,</p>
+          <p style={{ fontSize: 15, lineHeight: 1.9, color: "#1a1a2e", marginBottom: 36 }}>{t.ceoClosing}</p>
 
           <div style={{ display: "flex", alignItems: "center", gap: 18, paddingTop: 24, borderTop: "1px solid #e5e7eb" }}>
             <div style={{
@@ -392,8 +514,8 @@ export default async function ReportPrintPage({ params }: { params: Promise<{ id
         </div>
 
         <div className="report-footer">
-          <span>AUMENTIA — Diagnostic IA Stratégique — {company?.name}</span>
-          <span>Confidentiel · {today}</span>
+          <span>AUMENTIA — {t.footerTitle} — {company?.name}</span>
+          <span>{t.footerConfidential} · {today}</span>
         </div>
       </div>
 
@@ -404,16 +526,16 @@ export default async function ReportPrintPage({ params }: { params: Promise<{ id
         <div style={{ height: 5, background: `linear-gradient(90deg, ${CYAN}, ${DARK})` }} />
         <div style={{ padding: "44px 64px 0" }}>
           <div style={{ fontSize: 10, fontWeight: 800, color: CYAN, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: 8 }}>
-            VUE D&apos;ENSEMBLE
+            {t.overviewLabel}
           </div>
           <h2 style={{ fontSize: 26, fontWeight: 900, letterSpacing: "-0.02em", marginBottom: 36, color: "#1a1a2e" }}>
-            Tableau de Bord des Scores
+            {t.dashboardTitle}
           </h2>
 
           {/* Métriques globales */}
           <div style={{ display: "flex", gap: 16, marginBottom: 40 }}>
             <div style={{ flex: "0 0 180px", padding: "22px 20px", background: DARK, borderRadius: 14, textAlign: "center", color: "#fff" }}>
-              <div style={{ fontSize: 10, fontWeight: 700, color: CYAN, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 8 }}>Score Global</div>
+              <div style={{ fontSize: 10, fontWeight: 700, color: CYAN, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 8 }}>{t.globalScore}</div>
               <div style={{ fontSize: 52, fontWeight: 900, color: CYAN, lineHeight: 1, letterSpacing: "-0.03em" }}>{scores.overall}</div>
               <div style={{ fontSize: 14, color: "#8892b0", marginBottom: 10 }}>/100</div>
               <div style={{ display: "inline-block", padding: "4px 14px", background: `${maturity.color}20`, border: `1px solid ${maturity.color}`, borderRadius: 100, color: maturity.color, fontSize: 11, fontWeight: 700 }}>
@@ -421,17 +543,17 @@ export default async function ReportPrintPage({ params }: { params: Promise<{ id
               </div>
             </div>
             <div style={{ flex: "0 0 160px", padding: "22px 20px", background: "#f8f9fa", borderRadius: 14, textAlign: "center" }}>
-              <div style={{ fontSize: 10, fontWeight: 700, color: "#666", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 8 }}>Score IA</div>
+              <div style={{ fontSize: 10, fontWeight: 700, color: "#666", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 8 }}>{t.aiScore}</div>
               <div style={{ fontSize: 52, fontWeight: 900, color: "#1a1a2e", lineHeight: 1, letterSpacing: "-0.03em" }}>{scores.aiReadiness}</div>
               <div style={{ fontSize: 14, color: "#888", marginBottom: 10 }}>/100</div>
-              <div style={{ fontSize: 12, color: "#666" }}>Préparation IA</div>
+              <div style={{ fontSize: 12, color: "#666" }}>{t.aiReadiness}</div>
             </div>
             <div style={{ flex: 1, padding: "22px 24px", background: "#f8f9fa", borderRadius: 14 }}>
-              <div style={{ fontSize: 10, fontWeight: 700, color: "#666", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 14 }}>Participation</div>
+              <div style={{ fontSize: 10, fontWeight: 700, color: "#666", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: 14 }}>{t.participationLabel}</div>
               <div style={{ fontSize: 36, fontWeight: 900, color: "#1a1a2e", lineHeight: 1, marginBottom: 6 }}>
                 {completedCount}<span style={{ fontSize: 20, fontWeight: 400, color: "#888" }}>/{totalCount}</span>
               </div>
-              <div style={{ fontSize: 12, color: "#666", marginBottom: 12 }}>répondants ont complété</div>
+              <div style={{ fontSize: 12, color: "#666", marginBottom: 12 }}>{t.respondentsCompleted}</div>
               <div style={{ height: 8, background: "#e5e7eb", borderRadius: 4, overflow: "hidden" }}>
                 <div style={{ height: "100%", background: CYAN, borderRadius: 4, width: `${Math.round((completedCount / totalCount) * 100)}%` }} />
               </div>
@@ -444,13 +566,13 @@ export default async function ReportPrintPage({ params }: { params: Promise<{ id
               const benchmark = BENCHMARKS[p.pillar as Pillar];
               const diff = p.score - benchmark;
               const barColor = p.score >= 65 ? "#10B981" : p.score >= 45 ? "#f59e0b" : "#ef4444";
-              const statusLabel = p.score >= 65 ? "Force" : p.score >= 45 ? "A renforcer" : "Priorité critique";
+              const statusLabel = p.score >= 65 ? t.statusStrong : p.score >= 45 ? t.statusImprove : t.statusCritical;
               return (
                 <div key={p.pillar} style={{ marginBottom: 14 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 5 }}>
                     <div style={{ fontSize: 13, fontWeight: 600, color: "#1a1a2e" }}>{PILLAR_LABELS[p.pillar as Pillar]}</div>
                     <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-                      <span style={{ fontSize: 11, color: "#888" }}>Moy. belge: {benchmark}</span>
+                      <span style={{ fontSize: 11, color: "#888" }}>{t.benchmarkLabel}: {benchmark}</span>
                       <span style={{ fontSize: 15, fontWeight: 800, color: "#1a1a2e", minWidth: 48, textAlign: "right" }}>{p.score}/100</span>
                       <span style={{ fontSize: 11, fontWeight: 700, color: diff >= 0 ? "#10B981" : "#ef4444", minWidth: 36, textAlign: "right" }}>
                         {diff >= 0 ? "+" : ""}{diff}
@@ -471,21 +593,21 @@ export default async function ReportPrintPage({ params }: { params: Promise<{ id
               );
             })}
             <div style={{ fontSize: 10, color: "#aaa", marginTop: 8 }}>
-              ▎ Marqueur vertical = benchmark moyen des PME belges (source: Aumentia Research 2025)
+              {t.benchmarkNote}
             </div>
           </div>
 
           {/* Légende maturité */}
           <div style={{ padding: 18, background: "#f8f9fa", borderRadius: 12, border: "1px solid #e5e7eb" }}>
             <div style={{ fontSize: 10, fontWeight: 700, color: "#666", letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 12 }}>
-              Grille de Maturité IA — Aumentia
+              {t.maturityGridTitle}
             </div>
             <div style={{ display: "flex", gap: 12 }}>
               {[
-                { range: "0–40", label: "Précurseur", color: "#ef4444", desc: "Transformation urgente nécessaire" },
-                { range: "41–60", label: "Émergent", color: "#f59e0b", desc: "Bases à consolider rapidement" },
-                { range: "61–75", label: "En Marche", color: "#3b82f6", desc: "Accélération et déploiement possible" },
-                { range: "76–100", label: "Avancé", color: "#10B981", desc: "Leadership IA sectoriel" },
+                { ...t.maturityLevels[0], color: "#ef4444" },
+                { ...t.maturityLevels[1], color: "#f59e0b" },
+                { ...t.maturityLevels[2], color: "#3b82f6" },
+                { ...t.maturityLevels[3], color: "#10B981" },
               ].map((m) => (
                 <div key={m.range} style={{ flex: 1, padding: "10px 14px", background: "#fff", borderRadius: 8, borderLeft: `3px solid ${m.color}`, border: `1px solid ${m.color}30`, borderLeftWidth: 3, borderLeftColor: m.color }}>
                   <div style={{ fontSize: 11, fontWeight: 800, color: m.color }}>{m.range}/100</div>
@@ -498,8 +620,8 @@ export default async function ReportPrintPage({ params }: { params: Promise<{ id
         </div>
 
         <div className="report-footer">
-          <span>AUMENTIA — Diagnostic IA Stratégique — {company?.name}</span>
-          <span>Confidentiel · {today}</span>
+          <span>AUMENTIA — {t.footerTitle} — {company?.name}</span>
+          <span>{t.footerConfidential} · {today}</span>
         </div>
       </div>
 
@@ -513,8 +635,8 @@ export default async function ReportPrintPage({ params }: { params: Promise<{ id
         </div>
 
         <div className="report-footer">
-          <span>AUMENTIA — Diagnostic IA Stratégique — {company?.name}</span>
-          <span>Confidentiel · {today}</span>
+          <span>AUMENTIA — {t.footerTitle} — {company?.name}</span>
+          <span>{t.footerConfidential} · {today}</span>
         </div>
       </div>
     </>
