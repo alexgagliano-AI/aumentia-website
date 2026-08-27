@@ -9,13 +9,7 @@ export const metadata: Metadata = {
 
 // Le Meta Pixel (ID 1881259625725017) est initialisé dans app/layout.tsx (root).
 // InitiateCheckout → page.tsx, Purchase → merci/page.tsx.
+// Pas de <html>/<body> ici : le root layout les fournit déjà.
 export default function ScaleScanLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="fr">
-      <head />
-      <body style={{ margin: 0, background: "var(--dark)", color: "#fff" }}>
-        {children}
-      </body>
-    </html>
-  );
+  return <>{children}</>;
 }
