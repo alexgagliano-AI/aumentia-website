@@ -9,7 +9,7 @@ declare global {
   interface Window { fbq?: (...args: unknown[]) => void; }
 }
 
-const STRIPE_URL = process.env.NEXT_PUBLIC_STRIPE_SCAN_URL ?? "#";
+const STRIPE_URL = process.env.NEXT_PUBLIC_STRIPE_SCAN_URL ?? "https://buy.stripe.com/fZu9AV50w3p14O60dggnK02";
 
 function trackCheckout() {
   if (typeof window !== "undefined" && window.fbq) {

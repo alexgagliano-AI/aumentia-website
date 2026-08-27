@@ -6,7 +6,7 @@ declare global {
   interface Window { fbq?: (...args: unknown[]) => void; }
 }
 
-const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL ?? "";
+const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL ?? "https://calendly.com/alex-aumentia/scaling-up";
 const CYAN = "var(--cyan)";
 const GOLD = "var(--gold)";
 
