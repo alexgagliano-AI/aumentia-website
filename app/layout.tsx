@@ -126,13 +126,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
           s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
           (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init','1881259625725017');
+          fbq('init','4670180396642104');
           fbq('track','PageView');
         `}</Script>
         <noscript>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img height="1" width="1" style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=1881259625725017&ev=PageView&noscript=1"
+            src="https://www.facebook.com/tr?id=4670180396642104&ev=PageView&noscript=1"
             alt=""
           />
         </noscript>
