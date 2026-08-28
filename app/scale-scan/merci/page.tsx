@@ -12,10 +12,18 @@ const GOLD = "var(--gold)";
 
 export default function MerciPage() {
   useEffect(() => {
-    // Meta Pixel — Purchase (objectif principal de la campagne)
-    if (typeof window !== "undefined" && window.fbq) {
-      window.fbq("track", "Purchase", { value: 490, currency: "EUR" });
-    }
+    // Pixel chargé en afterInteractive — on attend qu'il soit prêt
+    let attempts = 0;
+    const interval = setInterval(() => {
+      attempts++;
+      if (typeof window !== "undefined" && window.fbq) {
+        window.fbq("track", "Purchase", { value: 490, currency: "EUR" });
+        clearInterval(interval);
+      } else if (attempts >= 30) {
+        clearInterval(interval);
+      }
+    }, 100);
+    return () => clearInterval(interval);
   }, []);
 
   return (
