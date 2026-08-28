@@ -62,8 +62,12 @@ export async function proxy(request: NextRequest) {
     return response;
   }
 
-  // ─── Public routes (respond, results) — no auth needed ───────────
-  if (pathname.startsWith("/respond") || pathname.startsWith("/results")) {
+  // ─── Public routes (respond, results, scale-scan) — no auth needed ─
+  if (
+    pathname.startsWith("/respond") ||
+    pathname.startsWith("/results") ||
+    pathname.startsWith("/scale-scan")
+  ) {
     return NextResponse.next();
   }
 
