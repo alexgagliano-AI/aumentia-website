@@ -3,11 +3,13 @@ import type { Translations } from "./types";
 const en: Translations = {
   nav: {
     home: "Home",
-    process: "The process",
-    offer: "The offer",
-    coaching: "AI Coaching",
+    agents: "AI Agents",
+    sprint: "Scale Sprint",
+    scale: "Platform",
+    cases: "Case studies",
+    about: "About",
     contact: "Contact",
-    cta: "Book a diagnosis",
+    cta: "Free trial",
   },
   hero: {
     badge: "Aumentia Growth OS Sprint",
@@ -262,18 +264,6 @@ const en: Translations = {
     purpose: "Aumentia exists to close the gap between growth ambition and operational reality. We help SMB leaders build systems — not chase problems.",
     cta: "Talk with Alexandre",
   },
-  footer: {
-    tagline: "Execution system for SMBs.",
-    links: {
-      title1: "Solutions",
-      audit: "AI Audit",
-      coaching: "AI Coaching",
-      investors: "Investors",
-      title2: "Contact",
-    },
-    rights: "All rights reserved.",
-  },
-
   investorPage: {
     meta: {
       title: "Aumentia — Investors · Fundraising €1M–€2M",
@@ -602,6 +592,155 @@ const en: Translations = {
       email: { title: "Direct email", value: "alex@aumentia.ai" },
       phone: { title: "Phone", value: "+32 471 662 563" },
     },
+  },
+
+  footer: {
+    tagline: "AI agent platform for SMBs.",
+    links: {
+      title1: "Products",
+      agents: "AI Agents",
+      sprint: "Scale Sprint",
+      scale: "Multi-Agent Platform",
+      title2: "Company",
+      cases: "Case studies",
+      about: "About",
+      title3: "Contact",
+    },
+    rights: "All rights reserved.",
+  },
+
+  homePage: {
+    hero: {
+      badge: "AI agent platform for SMBs",
+      h1: "AI that works for you. Not demos. Results.",
+      subtitle: "Three ways to engage Aumentia, depending on where you are. Every door has a visible price, concrete proof, and a measurable result.",
+    },
+    doors: {
+      badge: "3 entry points",
+      title: "Choose your starting point.",
+      items: [
+        { number: "01", label: "AI Agents", price: "From €47/month", desc: "A team of AI agents, one per function. Prospecting, customer service, strategic coaching. 15-day trial included.", cta: "See agents →", href: "/agents", accent: "cyan" },
+        { number: "02", label: "Scale Sprint", price: "From €250", desc: "Diagnosis of your operational chaos in 3 formats. From express diagnosis to the full 30-day sprint.", cta: "See plans →", href: "/sprint", accent: "gold" },
+        { number: "03", label: "Multi-Agent Platform", price: "Custom pricing", desc: "For large-scale multi-agent projects. Deployment, integration, monitoring. Fully under your brand.", cta: "Book a call →", href: "/scale", accent: "gray" },
+      ],
+    },
+    why: {
+      badge: "Why Aumentia",
+      title: "No jargon. No demos. Systems that run.",
+      items: [
+        { icon: "€", title: "Prices visible from page one", desc: "Every product has a listed price. No surprise quotes, no sales call before knowing the rate." },
+        { icon: "📏", title: "Measurable ROI at D+30", desc: "Time freed, autonomous decisions, active KPIs. Everything is measured before and after." },
+        { icon: "⚙️", title: "Systems, not recommendations", desc: "We don't deliver a report. We build the systems and make sure they run in your reality." },
+        { icon: "🛡️", title: "Result guarantee", desc: "If after 30 days you haven't freed at least 5h/week, we continue for free." },
+      ],
+    },
+    testimonials: { badge: "They use Aumentia", title: "What they say." },
+    finalcta: { title: "Your business deserves systems that run without you.", subtitle: "Choose your entry point. Start today.", cta: "See AI agents →" },
+  },
+
+  agentsPage: {
+    badge: "AI Agents",
+    title: "A team of AI agents,",
+    subtitle: "one per function, from €47/month. 15-day trial included on active agents.",
+    active_section: "Available agents",
+    waitlist_section: "Coming soon",
+    trial_cta: "15-day free trial",
+    demo_cta: "Book a demo",
+    waitlist_cta: "Join waitlist",
+    agents: [
+      { id: "scaling-up", name: "Scaling Up Coaching Agent", tagline: "Strategy & business growth", desc: "Based on Verne Harnish's method. Quarterly rocks, OKR, OPSP, effective meetings. Available 24/7 on Telegram.", price: "€47", priceLabel: "/month · 15-day trial", status: "active", tags: ["Strategy", "Scaling Up", "OKR", "Leadership"] },
+      { id: "sales", name: "Sales Agent", tagline: "Automated prospecting & qualification", desc: "Inbound lead qualification, automatic follow-ups, prospect scoring, CRM summaries. Your AI salesperson who never sleeps.", price: "From €150", priceLabel: "/month · Custom by volume", status: "active", tags: ["Prospecting", "CRM", "Follow-ups", "Qualification"] },
+      { id: "service-client", name: "Customer Service Agent", tagline: "Call reception, phone & WhatsApp response", desc: "Answers your inbound calls, handles routine requests via WhatsApp, escalates complex cases to your team.", price: "From €150", priceLabel: "/month · Custom by volume", status: "active", tags: ["Phone", "WhatsApp", "Support", "Reception"] },
+      { id: "marketing", name: "Marketing Agent", tagline: "Content, campaigns & analytics", desc: "Content creation, campaign planning, performance analysis, SEO suggestions. Your AI marketing department.", price: "From €150", priceLabel: "/month · Indicative price", status: "waitlist", tags: ["Content", "Campaigns", "SEO", "Analytics"] },
+      { id: "rh", name: "HR Agent", tagline: "Automated recruitment & onboarding", desc: "CV screening, pre-qualifications, onboarding new employees, answers to common HR questions.", price: "From €150", priceLabel: "/month · Indicative price", status: "waitlist", tags: ["Recruitment", "Onboarding", "HR", "Training"] },
+      { id: "finance", name: "Finance Agent", tagline: "Financial monitoring & reporting", desc: "Budget tracking, anomaly alerts, weekly financial summaries, management reporting preparation.", price: "From €190", priceLabel: "/month · Indicative price", status: "waitlist", tags: ["Budget", "Reporting", "Cash flow", "Alerts"] },
+    ],
+    bundle: {
+      badge: "Multi-agent bundle",
+      title: "-15% from 3 active agents",
+      desc: "Subscribe to 3 or more agents simultaneously and get an immediate discount on the monthly total.",
+      discount: "−15%",
+      select_label: "Select your agents",
+      total_label: "Monthly total",
+      bundle_label: "Bundle price (−15%)",
+      saving_label: "Monthly savings",
+      cta: "Book my bundle demo →",
+    },
+    waitlist_form: { title: "Get priority notification", placeholder: "Your professional email", submit: "Join waitlist →", success: "Perfect! You'll be notified first." },
+  },
+
+  sprintPage: {
+    badge: "Scale Sprint",
+    title: "Diagnose your operational chaos.",
+    subtitle: "Three formats for your need — from express diagnosis to the full 30-day sprint.",
+    tiers: [
+      { name: "Diagnosis", price: "€250", priceLabel: "excl. VAT · One-time payment", desc: "A snapshot of your chaos. Identification of your 3 main bottlenecks and priority action plan.", features: ["90-min interview with Alex", "Mapping of your 3 bottlenecks", "Operational diagnosis report", "Priority action plan (top 5 actions)", "Restitution session included"], cta: "Book my diagnosis →", highlighted: false },
+      { name: "Essential Sprint", price: "€1,500", priceLabel: "excl. VAT · One-time payment", desc: "Structure + 2 weeks of execution. For leaders who have identified their problems and want to act.", features: ["Full diagnosis (included)", "2-week execution sprint", "Key KPIs set up", "Roles and responsibilities defined", "2 automations deployed", "90-day execution plan"], cta: "Book my Essential Sprint →", highlighted: true },
+      { name: "Full Sprint", price: "€7,500", priceLabel: "excl. VAT · One-time payment", desc: "The complete 30-day sprint. From diagnosis to stabilization, with full support throughout the sprint.", features: ["Full diagnosis (included)", "4-week execution sprint", "KPI system + weekly management", "Complete team structuring", "3 AI automations deployed", "90-day execution plan", "30 days post-sprint support", "Guarantee: 5h/week freed or we continue"], cta: "Book my Full Sprint →", highlighted: false },
+    ],
+    process: {
+      badge: "How it works",
+      title: "4 weeks. One transformation.",
+      steps: [
+        { num: "01", title: "Chaos diagnosis", desc: "Complete process mapping, bottlenecks identified, CEO dependencies measured." },
+        { num: "02", title: "Structuring", desc: "Clear roles, KPIs per function, management rituals, critical process documentation." },
+        { num: "03", title: "AI & automation", desc: "Deployment of immediate-ROI automations, team training, system integration." },
+        { num: "04", title: "Stabilization", desc: "Complete tests, team adoption, first measured results, 90-day plan delivered." },
+      ],
+    },
+    guarantee: "🛡️ Full Sprint guarantee: if after 30 days you haven't freed at least 5h/week, we continue for free.",
+    cta: { title: "Not sure which plan to choose?", subtitle: "30 minutes free call. We identify your bottlenecks and advise the right plan for your situation.", btn: "Book a free diagnostic call →" },
+  },
+
+  scalePage: {
+    badge: "Multi-Agent Platform",
+    title: "For large-scale multi-agent projects.",
+    subtitle: "Deployment of interconnected AI agent ecosystems for SMBs that want to automate multiple functions simultaneously. Entirely under the Aumentia brand.",
+    features: [
+      { icon: "🤖", title: "Interconnected agents", desc: "Multiple agents that communicate, share data, alert each other. A coherent AI ecosystem, not isolated tools." },
+      { icon: "🏗️", title: "Custom architecture", desc: "Each deployment is designed for your organization. No off-the-shelf solution — everything adapted to your real processes." },
+      { icon: "📊", title: "Unified management dashboard", desc: "Centralized view of all your agents. Volumes, performance, alerts, ROI per agent — all in one place." },
+      { icon: "🔗", title: "Native integrations", desc: "Connection with your existing systems: CRM, ERP, accounting, communication. Agents fit into your current workflows." },
+      { icon: "🛡️", title: "Dedicated priority support", desc: "A single point of contact at Aumentia. Escalation within 4 hours, monthly performance reviews, continuous optimizations." },
+      { icon: "📈", title: "Guaranteed scalability", desc: "The architecture is designed to evolve with your organization. Add agents, functions, users without restructuring." },
+    ],
+    use_cases: [
+      { icon: "🏭", title: "SMBs 50–500 employees" },
+      { icon: "🔄", title: "Multi-department automation" },
+      { icon: "🌍", title: "Multi-site deployment" },
+      { icon: "🔧", title: "Complex system integration" },
+    ],
+    cta: { title: "Your project needs multiple agents?", subtitle: "A 45-minute call with Alex to understand your situation, define the architecture and estimate the investment.", btn: "Book a strategic call →", note: "Free call · No commitment · Response within 24h" },
+  },
+
+  casesPage: {
+    badge: "Case studies",
+    title: "What it changes, concretely.",
+    subtitle: "Measured results, not promises. Here's what SMB leaders achieved with Aumentia.",
+    results_label: "Result achieved",
+    cases: [
+      { quote: "In 4 weeks, I got my mornings back. My team now makes 80% of decisions without me. I wouldn't have believed it was possible.", name: "Thomas R.", role: "CEO · Agency · 18 employees", result: "+80% decisions made without the CEO" },
+      { quote: "The initial diagnosis opened my eyes. We were losing 15h per week on tasks that could have been fixed months ago.", name: "Sophie M.", role: "Director · Consulting firm · Lyon", result: "15h/week recovered" },
+      { quote: "I finally took a week off without my phone. The company kept running. Sounds silly, but it's the first time in 8 years.", name: "Marco D.", role: "Founder · SMB · 35 people", result: "1 week without CEO intervention" },
+    ],
+    logos: { badge: "They trust us", title: "SMBs across all sectors." },
+    cta: { title: "Ready to build your own case study?", subtitle: "Start with a free 30-minute diagnostic.", btn: "Book my diagnostic →" },
+  },
+
+  aboutPage: {
+    badge: "The founder",
+    name: "Alexandre Gagliano",
+    role: "CEO & Founder, Aumentia",
+    bio: "I've accompanied more than 200 SMB leaders on their growth journey. The same question came up every time: 'Why can't my company run without me?' Aumentia is the systemic answer to that question — not theoretical consulting, but AI agents and execution sprints that concretely change how an SMB operates.",
+    bhag: "BHAG: Help 1 million leaders manage their growth with clarity by 2040.",
+    credentials: [
+      { icon: "📐", title: "Certified Scaling Up Coach", desc: "Trained directly on Verne Harnish's method (Gazelles). The playbook for SMBs going from €1M to €100M revenue." },
+      { icon: "📚", title: "Published author", desc: "Author of 'L'As de la Vente' — adapted for fitness and coaching professionals with Scaling Up, Dan Martell and John Maxwell methods." },
+      { icon: "🌍", title: "Trilingual FR / EN / IT", desc: "200+ leaders accompanied in France, Belgium, Switzerland and Italy. A European vision of the SMB." },
+      { icon: "🤝", title: "John Maxwell & Dan Martell certified", desc: "The world's best leadership and growth methods, applied to the context of French-speaking SMBs." },
+    ],
+    book: { badge: "Recent publication", title: "L'As de la Vente V2 — Fitness & Coaching Method", desc: "The world's best methods (Scaling Up, Dan Martell, John Maxwell, Toyota) adapted for fitness and coaching professionals. An operational guide, not theoretical.", cta: "Discover the book →" },
+    cta: { title: "Talk with Alexandre", btn: "Book 30 minutes →" },
   },
 };
 

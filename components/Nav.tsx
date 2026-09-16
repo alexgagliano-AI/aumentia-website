@@ -10,9 +10,11 @@ interface NavProps {
   locale: string;
   t: {
     home: string;
-    process: string;
-    offer: string;
-    coaching: string;
+    agents: string;
+    sprint: string;
+    scale: string;
+    cases: string;
+    about: string;
     contact: string;
     cta: string;
   };
@@ -30,19 +32,21 @@ export default function Nav({ locale, t }: NavProps) {
   }, []);
 
   function switchLocale(newLocale: Locale) {
-    // Replace current locale prefix with new one
     const segments = pathname.split("/");
     segments[1] = newLocale;
     return segments.join("/") || `/${newLocale}`;
   }
 
   const links = [
-    { href: `/${locale}`, label: t.home },
-    { href: `/${locale}#process`, label: t.process },
-    { href: `/${locale}#offer`, label: t.offer },
-    { href: `/${locale}/coaching`, label: t.coaching },
+    { href: `/${locale}/agents`, label: t.agents },
+    { href: `/${locale}/sprint`, label: t.sprint },
+    { href: `/${locale}/scale`, label: t.scale },
+    { href: `/${locale}/cases`, label: t.cases },
+    { href: `/${locale}/a-propos`, label: t.about },
     { href: `/${locale}/contact`, label: t.contact },
   ];
+
+  const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
 
   return (
     <nav
@@ -61,17 +65,18 @@ export default function Nav({ locale, t }: NavProps) {
           </Link>
 
           {/* Desktop links */}
-          <div style={{ display: "flex", alignItems: "center", gap: 32 }} className="desktop-nav">
+          <div style={{ display: "flex", alignItems: "center", gap: 24 }} className="desktop-nav">
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
                 style={{
-                  fontSize: 14,
+                  fontSize: 13,
                   fontWeight: 500,
-                  color: pathname === l.href ? "var(--cyan)" : "var(--gray-light)",
+                  color: isActive(l.href) ? "var(--cyan)" : "var(--gray-light)",
                   textDecoration: "none",
                   transition: "color 0.2s",
+                  whiteSpace: "nowrap",
                 }}
               >
                 {l.label}
@@ -80,8 +85,7 @@ export default function Nav({ locale, t }: NavProps) {
           </div>
 
           {/* Right: locale switcher + CTA */}
-          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            {/* Locale switcher */}
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <div style={{ display: "flex", gap: 4 }}>
               {locales.map((l) => (
                 <Link
@@ -104,7 +108,7 @@ export default function Nav({ locale, t }: NavProps) {
             </div>
 
             <a
-              href="https://calendly.com/alex-aumentia"
+              href="https://t.me/ScalingUpCoachBot"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary"
@@ -149,8 +153,8 @@ export default function Nav({ locale, t }: NavProps) {
                 onClick={() => setOpen(false)}
                 style={{
                   padding: "10px 12px", borderRadius: 8,
-                  color: pathname === l.href ? "var(--cyan)" : "#fff",
-                  background: pathname === l.href ? "var(--cyan-dim)" : "transparent",
+                  color: isActive(l.href) ? "var(--cyan)" : "#fff",
+                  background: isActive(l.href) ? "var(--cyan-dim)" : "transparent",
                   fontSize: 15, fontWeight: 500, textDecoration: "none",
                 }}
               >
@@ -158,7 +162,7 @@ export default function Nav({ locale, t }: NavProps) {
               </Link>
             ))}
             <div style={{ marginTop: 8 }}>
-              <a href="https://calendly.com/alex-aumentia" target="_blank" rel="noopener noreferrer"
+              <a href="https://t.me/ScalingUpCoachBot" target="_blank" rel="noopener noreferrer"
                 className="btn-primary" style={{ width: "100%", justifyContent: "center" }}>
                 {t.cta}
               </a>
@@ -168,7 +172,7 @@ export default function Nav({ locale, t }: NavProps) {
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
           .desktop-nav { display: none !important; }
           .burger-btn { display: block !important; }
         }

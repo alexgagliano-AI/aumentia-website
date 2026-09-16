@@ -1,9 +1,11 @@
 export interface Translations {
   nav: {
     home: string;
-    process: string;
-    offer: string;
-    coaching: string;
+    agents: string;
+    sprint: string;
+    scale: string;
+    cases: string;
+    about: string;
     contact: string;
     cta: string;
   };
@@ -107,7 +109,11 @@ export interface Translations {
   };
   footer: {
     tagline: string;
-    links: { title1: string; audit: string; coaching: string; investors: string; title2: string };
+    links: {
+      title1: string; agents: string; sprint: string; scale: string;
+      title2: string; cases: string; about: string;
+      title3: string;
+    };
     rights: string;
   };
   investorPage: {
@@ -219,5 +225,68 @@ export interface Translations {
       email: { title: string; value: string };
       phone: { title: string; value: string };
     };
+  };
+  homePage: {
+    hero: { badge: string; h1: string; subtitle: string };
+    doors: {
+      badge: string; title: string;
+      items: { number: string; label: string; price: string; desc: string; cta: string; href: string; accent: string }[];
+    };
+    why: {
+      badge: string; title: string;
+      items: { icon: string; title: string; desc: string }[];
+    };
+    testimonials: { badge: string; title: string };
+    finalcta: { title: string; subtitle: string; cta: string };
+  };
+  agentsPage: {
+    badge: string; title: string; subtitle: string;
+    active_section: string; waitlist_section: string;
+    trial_cta: string; demo_cta: string; waitlist_cta: string;
+    agents: {
+      id: string; name: string; tagline: string; desc: string;
+      price: string; priceLabel: string; status: string; tags: string[];
+    }[];
+    bundle: {
+      badge: string; title: string; desc: string; discount: string;
+      select_label: string; total_label: string; bundle_label: string;
+      saving_label: string; cta: string;
+    };
+    waitlist_form: { title: string; placeholder: string; submit: string; success: string };
+  };
+  sprintPage: {
+    badge: string; title: string; subtitle: string;
+    tiers: {
+      name: string; price: string; priceLabel: string;
+      desc: string; features: string[]; cta: string; highlighted: boolean;
+    }[];
+    process: {
+      badge: string; title: string;
+      steps: { num: string; title: string; desc: string }[];
+    };
+    guarantee: string;
+    cta: { title: string; subtitle: string; btn: string };
+  };
+  scalePage: {
+    badge: string; title: string; subtitle: string;
+    features: { icon: string; title: string; desc: string }[];
+    use_cases: { icon: string; title: string }[];
+    cta: { title: string; subtitle: string; btn: string; note: string };
+  };
+  casesPage: {
+    badge: string; title: string; subtitle: string;
+    results_label: string;
+    cases: {
+      quote: string; name: string; role: string; result: string;
+    }[];
+    logos: { badge: string; title: string };
+    cta: { title: string; subtitle: string; btn: string };
+  };
+  aboutPage: {
+    badge: string; name: string; role: string;
+    bio: string; bhag: string;
+    credentials: { icon: string; title: string; desc: string }[];
+    book: { badge: string; title: string; desc: string; cta: string };
+    cta: { title: string; btn: string };
   };
 }
