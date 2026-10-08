@@ -11,6 +11,7 @@ interface NavProps {
   t: {
     home: string;
     agents: string;
+    agentVocal: string;
     sprint: string;
     scale: string;
     cases: string;
@@ -39,6 +40,7 @@ export default function Nav({ locale, t }: NavProps) {
 
   const links = [
     { href: `/${locale}/agents`, label: t.agents },
+    { href: `/${locale}/agent-vocal`, label: t.agentVocal },
     { href: `/${locale}/sprint`, label: t.sprint },
     { href: `/${locale}/scale`, label: t.scale },
     { href: `/${locale}/cases`, label: t.cases },

@@ -2,6 +2,7 @@ export interface Translations {
   nav: {
     home: string;
     agents: string;
+    agentVocal: string;
     sprint: string;
     scale: string;
     cases: string;
@@ -288,5 +289,42 @@ export interface Translations {
     credentials: { icon: string; title: string; desc: string }[];
     book: { badge: string; title: string; desc: string; cta: string };
     cta: { title: string; btn: string };
+  };
+  agentVocalPage: {
+    badge: string;
+    h1_line1: string;
+    h1_accent: string;
+    subtitle: string;
+    cta_primary: string;
+    cta_demo: string;
+    hero_badges: string[];
+    hero_visual_label: string;
+    problem_badge: string;
+    problem_title: string;
+    problem_subtitle: string;
+    problem_items: { title: string; desc: string }[];
+    how_badge: string;
+    how_title: string;
+    how_subtitle: string;
+    steps: { num: string; title: string; desc: string }[];
+    benefits_badge: string;
+    benefits_title: string;
+    benefits: { icon: string; title: string; desc: string }[];
+    sectors_badge: string;
+    sectors_title: string;
+    sectors_subtitle: string;
+    sectors: { icon: string; name: string }[];
+    demo_badge: string;
+    demo_title: string;
+    demo_subtitle: string;
+    demo_note: string;
+    faq_badge: string;
+    faq_title: string;
+    faq: { q: string; a: string }[];
+    cta_title: string;
+    cta_subtitle: string;
+    cta_btn: string;
+    cta_email: string;
+    cta_note: string;
   };
 }
