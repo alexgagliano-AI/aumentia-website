@@ -697,7 +697,7 @@ const fr: Translations = {
         desc: "Qualification de leads entrants, relances automatiques, scoring prospects, synthèses CRM. Votre commercial IA qui ne dort jamais.",
         price: "Dès 150€",
         priceLabel: "/mois · Sur devis selon volume",
-        status: "active",
+        status: "waitlist",
         tags: ["Prospection", "CRM", "Relances", "Qualification"],
       },
       {
@@ -707,7 +707,7 @@ const fr: Translations = {
         desc: "Répond à vos appels entrants, gère les demandes courantes par WhatsApp, escalade les cas complexes à votre équipe.",
         price: "Dès 150€",
         priceLabel: "/mois · Sur devis selon volume",
-        status: "active",
+        status: "waitlist",
         tags: ["Téléphone", "WhatsApp", "Support", "Réception"],
       },
       {
