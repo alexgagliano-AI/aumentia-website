@@ -688,6 +688,7 @@ const fr: Translations = {
         price: "47€",
         priceLabel: "/mois · Essai 15 jours",
         status: "active",
+        cta: "trial",
         tags: ["Stratégie", "Scaling Up", "OKR", "Leadership"],
       },
       {
@@ -698,6 +699,7 @@ const fr: Translations = {
         price: "Dès 150€",
         priceLabel: "/mois · Sur devis selon volume",
         status: "active",
+        cta: "waitlist",
         tags: ["Prospection", "CRM", "Relances", "Qualification"],
       },
       {
@@ -708,6 +710,7 @@ const fr: Translations = {
         price: "Dès 150€",
         priceLabel: "/mois · Sur devis selon volume",
         status: "active",
+        cta: "waitlist",
         tags: ["Téléphone", "WhatsApp", "Support", "Réception"],
       },
       {
@@ -718,6 +721,7 @@ const fr: Translations = {
         price: "Dès 150€",
         priceLabel: "/mois · Prix indicatif",
         status: "active",
+        cta: "waitlist",
         tags: ["Contenu", "Campagnes", "SEO", "Analytics"],
       },
       {
@@ -728,6 +732,7 @@ const fr: Translations = {
         price: "Dès 150€",
         priceLabel: "/mois · Prix indicatif",
         status: "active",
+        cta: "waitlist",
         tags: ["Recrutement", "Onboarding", "RH", "Formation"],
       },
       {
@@ -738,6 +743,7 @@ const fr: Translations = {
         price: "Dès 190€",
         priceLabel: "/mois · Prix indicatif",
         status: "active",
+        cta: "waitlist",
         tags: ["Budget", "Reporting", "Trésorerie", "Alertes"],
       },
     ],

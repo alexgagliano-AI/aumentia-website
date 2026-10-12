@@ -246,7 +246,7 @@ export interface Translations {
     trial_cta: string; demo_cta: string; waitlist_cta: string;
     agents: {
       id: string; name: string; tagline: string; desc: string;
-      price: string; priceLabel: string; status: string; tags: string[];
+      price: string; priceLabel: string; status: string; cta: "trial" | "waitlist"; tags: string[];
     }[];
     bundle: {
       badge: string; title: string; desc: string; discount: string;
