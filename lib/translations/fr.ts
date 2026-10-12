@@ -697,7 +697,7 @@ const fr: Translations = {
         desc: "Qualification de leads entrants, relances automatiques, scoring prospects, synthèses CRM. Votre commercial IA qui ne dort jamais.",
         price: "Dès 150€",
         priceLabel: "/mois · Sur devis selon volume",
-        status: "waitlist",
+        status: "active",
         tags: ["Prospection", "CRM", "Relances", "Qualification"],
       },
       {
@@ -707,7 +707,7 @@ const fr: Translations = {
         desc: "Répond à vos appels entrants, gère les demandes courantes par WhatsApp, escalade les cas complexes à votre équipe.",
         price: "Dès 150€",
         priceLabel: "/mois · Sur devis selon volume",
-        status: "waitlist",
+        status: "active",
         tags: ["Téléphone", "WhatsApp", "Support", "Réception"],
       },
       {
@@ -717,7 +717,7 @@ const fr: Translations = {
         desc: "Création de contenu, planification de campagnes, analyse de performance, suggestions SEO. Votre département marketing IA.",
         price: "Dès 150€",
         priceLabel: "/mois · Prix indicatif",
-        status: "waitlist",
+        status: "active",
         tags: ["Contenu", "Campagnes", "SEO", "Analytics"],
       },
       {
@@ -727,7 +727,7 @@ const fr: Translations = {
         desc: "Tri de CV, pré-qualifications, onboarding nouveaux collaborateurs, réponses aux questions RH courantes.",
         price: "Dès 150€",
         priceLabel: "/mois · Prix indicatif",
-        status: "waitlist",
+        status: "active",
         tags: ["Recrutement", "Onboarding", "RH", "Formation"],
       },
       {
@@ -737,7 +737,7 @@ const fr: Translations = {
         desc: "Suivi budgétaire, alertes anomalies, synthèses financières hebdomadaires, préparation de reporting direction.",
         price: "Dès 190€",
         priceLabel: "/mois · Prix indicatif",
-        status: "waitlist",
+        status: "active",
         tags: ["Budget", "Reporting", "Trésorerie", "Alertes"],
       },
     ],
